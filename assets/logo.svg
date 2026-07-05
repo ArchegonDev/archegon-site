@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 314 96" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="24 0 360 96" role="img" aria-labelledby="title desc">
   <title id="title">Archegon</title>
   <desc id="desc">Archegon wordmark with a blue looped line.</desc>
   <path d="M38 91 7 39c22-14 45-5 75 14 33 21 59 32 86 18 22-11 37-33 36-59 0-11-7-13-18-4-26 20-54 51-86 74-23 17-43 23-62 9Z" fill="#e6e6e6"/>
   <path d="M3 40c18-17 43-11 75 10 42 27 71 33 98 15 22-15 35-41 28-58-4-9-29 10-82 60-31 29-59 41-84 24" fill="none" stroke="#1b54a8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M98 57c33-26 62-48 91-50 18-1 18 18 6 40-12 22-25 34-12 42 15 9 41-7 69-36" fill="none" stroke="#1b54a8" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="126" y="66" fill="#050505" font-family="Snell Roundhand, Apple Chancery, Brush Script MT, Segoe Script, cursive" font-size="55" font-style="italic" font-weight="400">Archegon</text>
+  <text x="108" y="66" fill="#050505" font-family="Snell Roundhand, Apple Chancery, Brush Script MT, Segoe Script, cursive" font-size="55" font-style="italic" font-weight="400">Archegon</text>
 </svg>

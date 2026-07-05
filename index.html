@@ -26,7 +26,7 @@
   <body>
     <header class="site-header" data-header>
       <a class="brand" href="#top" aria-label="Archegon home" data-analytics-event="Nav: Home">
-        <img class="brand-logo" src="assets/logo.svg" alt="Archegon" width="150" height="58">
+        <img class="brand-logo" src="assets/logo.svg?v=3" alt="Archegon" width="150" height="58">
       </a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="#thesis" data-analytics-event="Nav: Thesis">Thesis</a>
@@ -44,6 +44,16 @@
 
     <main id="top">
       <section class="hero section-band" aria-labelledby="hero-title">
+        <img
+          class="hero-bg"
+          src="assets/visual-data-center.jpg"
+          alt=""
+          width="1080"
+          height="809"
+          decoding="async"
+          fetchpriority="high"
+          aria-hidden="true"
+        >
         <div class="heat-map" aria-hidden="true">
           <span class="heat-core"></span>
           <span class="compute-node node-a">Firm power</span>
@@ -145,6 +155,36 @@
             Request the data room
           </a>
         </div>
+        <div class="project-photos" aria-label="Project visual context">
+          <figure class="project-photo">
+            <img
+              src="assets/visual-wairakei-geothermal.jpg"
+              alt="Wairakei geothermal power plant infrastructure in New Zealand"
+              width="1600"
+              height="1200"
+              loading="lazy"
+              decoding="async"
+            >
+            <figcaption>
+              Illustrative: Wairakei geothermal infrastructure in the Taupo volcanic zone;
+              not an Archegon site or partner asset.
+            </figcaption>
+          </figure>
+          <figure class="project-photo dark-caption">
+            <img
+              src="assets/visual-cooper-creek.jpg"
+              alt="Cooper Creek landscape in South Australia"
+              width="1800"
+              height="1350"
+              loading="lazy"
+              decoding="async"
+            >
+            <figcaption>
+              Illustrative: Cooper Creek landscape context for remote Australian infrastructure;
+              not the Habanero plant.
+            </figcaption>
+          </figure>
+        </div>
         <div class="project-grid">
           <article class="project-card">
             <p class="post-meta">New Zealand - The Build</p>
@@ -238,6 +278,20 @@
             </p>
           </article>
         </div>
+        <figure class="opportunity-photo">
+          <img
+            src="assets/visual-solar-sheep.jpg"
+            alt="Sheep grazing below solar panels in an agrivoltaic field"
+            width="1024"
+            height="682"
+            loading="lazy"
+            decoding="async"
+          >
+          <figcaption>
+            Illustrative co-benefit analogue: agrivoltaics can pair energy infrastructure with
+            managed land use; this is not a Cooper Basin image.
+          </figcaption>
+        </figure>
         <p class="disclaimer reverse">
           Nothing on this website constitutes an offer or invitation to invest, financial advice,
           or a financial promotion. All figures are illustrative and subject to verification.
