@@ -13,6 +13,20 @@ python3 -m http.server 8080
 
 Then visit `http://127.0.0.1:8080`.
 
+## QA checks
+
+Run the internal site link check before publishing:
+
+```sh
+python3 tools/check_links.py
+```
+
+Run the slower external-source audit when updating citations:
+
+```sh
+python3 tools/check_links.py --external
+```
+
 ## Free hosting options
 
 - Cloudflare Pages: connect a Git repo, set the project root to this folder, no build command, output directory `/`.
@@ -28,6 +42,7 @@ Keep the Google mail records intact. Only change the website records for `www` a
 - Investor-facing language is framed as "register interest" / "get in touch".
 - Financial and project material is labelled illustrative and subject to due diligence.
 - The New Zealand and Australia downloads are public summaries generalised from source business plans.
+- The public evidence page contains working citation anchors for the website claims.
 - Detailed financial models, capital stacks, performance assumptions, and capital requirements should remain in a private data-room process after legal review.
 - The form uses a mailto fallback until a hosted form provider is configured.
 - Plausible is referenced for privacy-friendly analytics; connect the domain in Plausible before relying on dashboard data.
