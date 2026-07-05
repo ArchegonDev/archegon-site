@@ -44,7 +44,7 @@ Keep the Google mail records intact. Only change the website records for `www` a
 - The New Zealand and Australia downloads are public summaries generalised from source business plans.
 - The public evidence page contains working citation anchors for the website claims.
 - Local visual assets are credited on the evidence page with source, author, and licence notes.
-- Detailed financial models, capital stacks, performance assumptions, and capital requirements should remain in a private data-room process after legal review.
+- Detailed financial models, capital stacks, performance assumptions, and capital requirements should remain in a controlled diligence process after legal review.
 - The form uses a mailto fallback until a hosted form provider is configured.
 - Plausible is referenced for privacy-friendly analytics; connect the domain in Plausible before relying on dashboard data.
 - Review all investor-facing language with a solicitor familiar with financial-promotion rules before broad launch.

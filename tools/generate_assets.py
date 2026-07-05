@@ -211,7 +211,7 @@ def main():
         [
             "Expressions of interest from infrastructure investors, energy partners, AI compute customers, data-centre operators, technical co-founders, and advisors.",
             "Feedback on the site-screening approach, commercial structure, consenting pathway, and how to make the opportunity credible for an investment-grade diligence process.",
-            "Qualified conversations that may lead to a separate private data-room review.",
+            "Qualified conversations that may lead to a separate controlled diligence review.",
         ],
         "The underlying source plan contains capital-cost ranges, revenue assumptions, scenario analyses, and staged capital requirements. Those figures are not published here because they require verification, legal review, and a qualified diligence process. Detailed financial material should be shared separately only with appropriate parties.",
     )
@@ -263,7 +263,7 @@ def main():
         [
             "Expressions of interest from geothermal developers, subsurface experts, infrastructure capital, hyperscale or AI compute customers, energy partners, and Australian policy or grants specialists.",
             "Technical review of whether the Fervo-style EGS playbook, cooling architecture, and connectivity route can be adapted credibly to the Cooper Basin.",
-            "Qualified conversations that may lead to a separate private data-room review.",
+            "Qualified conversations that may lead to a separate controlled diligence review.",
         ],
         "The underlying source plan contains pilot capital requirements, Phase 1 capex ranges, scenario analyses, capital-stack scenarios, sensitivity tables, and exit analysis. Those figures are not published here because the opportunity is first-of-a-kind and requires technical validation, legal review, and a qualified diligence process before any investment discussion.",
     )
