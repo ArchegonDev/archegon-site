@@ -58,37 +58,47 @@ function sweepConduit(C, bag) {
 function buildWells() {
   var wells = [];
 
-  /* injector: vertical, then a build section, then lateral */
+  /* Injector: vertical, a build section through the curve, then a LONG
+     horizontal lateral. The lateral is the point — it is what exposes
+     kilometres of hard rock instead of a single vertical intercept. */
   wells.push(makeConduit([
-    [-3.30,  1.10, 0.0],
-    [-3.30, -0.60, 0.0],
-    [-3.28, -2.60, 0.0],
-    [-3.22, -4.40, 0.0],
-    [-3.05, -5.80, 0.0],
-    [-2.70, -6.75, 0.0],
-    [-2.05, -7.15, 0.0],
-    [-1.15, -7.24, 0.0],
-    [-0.35, -7.26, 0.0]
+    [-4.35,  1.05, 0.0],
+    [-4.35, -0.80, 0.0],
+    [-4.33, -3.00, 0.0],
+    [-4.28, -5.00, 0.0],
+    [-4.14, -6.35, 0.0],
+    [-3.80, -7.30, 0.0],
+    [-3.15, -7.80, 0.0],
+    [-2.30, -7.96, 0.0],
+    [-1.00, -8.00, 0.0],
+    [ 1.20, -8.00, 0.0],
+    [ 3.40, -7.99, 0.0],
+    [ 5.05, -7.98, 0.0]
   ], {
-    segs: 190, radial: 16,
-    radius: table([0.115, 0.108, 0.100, 0.092, 0.086, 0.080, 0.074, 0.070, 0.066]),
+    segs: 260, radial: 16,
+    radius: table([0.105, 0.100, 0.096, 0.092, 0.088, 0.084, 0.080, 0.078, 0.076, 0.074, 0.072, 0.070]),
     kind: 'well'
   }));
 
-  /* producer: mirrored, lands slightly deeper so the pair is not symmetric */
+  /* Producer: drilled from the same pad and landed in a parallel lateral
+     stacked above the injector. Same-pad, parallel laterals are the
+     defining geometry of a next-generation EGS doublet. */
   wells.push(makeConduit([
-    [ 3.42,  1.10, 0.0],
-    [ 3.42, -0.60, 0.0],
-    [ 3.40, -2.40, 0.0],
-    [ 3.32, -4.20, 0.0],
-    [ 3.14, -5.65, 0.0],
-    [ 2.78, -6.65, 0.0],
-    [ 2.10, -7.05, 0.0],
-    [ 1.20, -7.14, 0.0],
-    [ 0.40, -7.17, 0.0]
+    [-3.55,  1.05, 0.0],
+    [-3.55, -0.80, 0.0],
+    [-3.53, -2.90, 0.0],
+    [-3.48, -4.70, 0.0],
+    [-3.34, -5.85, 0.0],
+    [-3.02, -6.55, 0.0],
+    [-2.45, -6.86, 0.0],
+    [-1.60, -6.96, 0.0],
+    [-0.20, -6.99, 0.0],
+    [ 2.00, -6.99, 0.0],
+    [ 4.05, -6.98, 0.0],
+    [ 5.05, -6.98, 0.0]
   ], {
-    segs: 190, radial: 16,
-    radius: table([0.118, 0.110, 0.102, 0.094, 0.088, 0.082, 0.076, 0.072, 0.068]),
+    segs: 260, radial: 16,
+    radius: table([0.108, 0.103, 0.099, 0.095, 0.091, 0.087, 0.083, 0.081, 0.079, 0.077, 0.075, 0.073]),
     kind: 'well'
   }));
 
@@ -98,33 +108,75 @@ function buildWells() {
 /* ----------------------------------------------------------------------
  * The stimulated volume: fracture wings propagating off both laterals.
  * -------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------
+ * Engineered fractures.
+ *
+ * This is the whole distinction. Conventional geothermal hunts for
+ * naturally occurring fractures and accepts whatever the subsurface
+ * happens to provide. Next-generation EGS drills into hard, non-permeable
+ * rock and CREATES the flow path: evenly spaced stimulation stages along
+ * the lateral, each opening a near-vertical fracture that connects the
+ * injector to the producer above it.
+ *
+ * So these are not grown with a random walk. They are a designed pattern:
+ * regular spacing, consistent height, mild variation only.
+ * -------------------------------------------------------------------- */
+var INJ_Y = -8.00;
+var PROD_Y = -6.99;
+
 function buildFractures(rng) {
   var out = [];
+
+  var x0 = -1.85, x1 = 4.65;
+  var stages = 13;
   var i;
 
-  /* stimulation stages along the injector lateral */
-  var stages = [-2.05, -1.45, -0.90, -0.35];
-  for (i = 0; i < stages.length; i++) {
-    var x = stages[i];
-    var y = RESERVOIR_Y - 0.02 + (rng() - 0.5) * 0.08;
+  for (i = 0; i < stages; i++) {
+    var t = stages === 1 ? 0.5 : i / (stages - 1);
+    var x = x0 + (x1 - x0) * t;
 
-    /* each stage opens wings on both sides of the wellbore */
-    growFractures(rng, new THREE.Vector3(x, y, 0),
-      new THREE.Vector3(0.72, 0.10, 0.68).normalize(),
-      1.55 + rng() * 0.5, 0.052, 0, out, { maxGen: 3 });
+    /* Each stage spans from the injector up past the producer, so the
+       fracture visibly ties the two laterals together. Slight per-stage
+       variation keeps it from looking like a printed grid without
+       implying the geometry is uncontrolled. */
+    var jitter = (rng() - 0.5) * 0.10;
+    var over = 0.62 + rng() * 0.26;
+    var under = 0.30 + rng() * 0.16;
 
-    growFractures(rng, new THREE.Vector3(x, y, 0),
-      new THREE.Vector3(0.68, -0.06, -0.72).normalize(),
-      1.40 + rng() * 0.5, 0.046, 0, out, { maxGen: 3 });
-  }
+    var bot = INJ_Y - under;
+    var top = PROD_Y + over;
 
-  /* a few wings reaching back from the producer, closing the loop */
-  var pstages = [1.95, 1.25, 0.60];
-  for (i = 0; i < pstages.length; i++) {
-    growFractures(rng,
-      new THREE.Vector3(pstages[i], RESERVOIR_Y + 0.06 + (rng() - 0.5) * 0.08, 0),
-      new THREE.Vector3(-0.78, 0.04, (rng() - 0.5) * 1.2).normalize(),
-      1.30 + rng() * 0.45, 0.042, 0, out, { maxGen: 2 });
+    out.push(makeConduit([
+      [x + jitter * 0.6, bot,  0.0],
+      [x + jitter,       INJ_Y + 0.35, 0.0],
+      [x,                (INJ_Y + PROD_Y) / 2, 0.0],
+      [x - jitter * 0.4, PROD_Y - 0.30, 0.0],
+      [x - jitter * 0.8, top,  0.0]
+    ], {
+      segs: 54, radial: 7,
+      /* widest in the middle of the stage, tapering at both tips —
+         a propped fracture is lens-shaped, not a parallel slot */
+      radius: function (tt) {
+        return (0.014 + 0.030 * Math.sin(Math.PI * clamp01(tt)));
+      },
+      kind: 'fracture'
+    }));
+
+    /* a short secondary wing either side, as stimulation rarely opens a
+       single perfectly planar face */
+    if (rng() > 0.42) {
+      var side = rng() > 0.5 ? 1 : -1;
+      var wx = x + side * (0.14 + rng() * 0.10);
+      out.push(makeConduit([
+        [wx, INJ_Y + 0.20, 0.0],
+        [wx + side * 0.06, (INJ_Y + PROD_Y) / 2, 0.0],
+        [wx + side * 0.02, PROD_Y + 0.18, 0.0]
+      ], {
+        segs: 30, radial: 6,
+        radius: function (tt) { return 0.008 + 0.014 * Math.sin(Math.PI * clamp01(tt)); },
+        kind: 'fracture'
+      }));
+    }
   }
 
   return out;

@@ -125,8 +125,11 @@ h3{
 
 /* the figure: scene canvas plus its printed caption */
 .hero-figure{ position:relative; align-self:stretch; display:flex; flex-direction:column; }
-.scene{ position:relative; flex:1; min-height:340px; }
-.scene canvas{ width:100%; height:100%; display:block; }
+.scene{
+  position:relative; flex:1; min-height:340px;
+  display:flex; align-items:center;
+}
+.scene svg{ width:100%; height:auto; display:block; }
 .figure-caption{
   display:flex; justify-content:space-between; gap:16px;
   padding-top:12px; margin-top:6px;

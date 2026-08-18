@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Archegon — Geothermal-powered data centres</title>
 <link rel="stylesheet" href="page.css">
+<link rel="stylesheet" href="figure.css">
 </head>
 <body>
 
@@ -38,9 +39,9 @@
     </div>
 
     <figure class="hero-figure">
-      <div class="scene" id="scene"></div>
+      <div class="scene" id="scene" data-figure="figure.svg"></div>
       <figcaption class="figure-caption">
-        <span><b>Fig. 1</b> &nbsp;Enhanced geothermal doublet, schematic section</span>
+        <span><b>Fig. 1</b> &nbsp;Enhanced geothermal system, schematic section</span>
         <span>Illustrative &middot; not to scale</span>
       </figcaption>
     </figure>
@@ -128,15 +129,15 @@
 
 </main>
 
-<script src="lib/three.min.js"></script>
-<script src="scene-core.js"></script>
-<script src="scene-shaders.js"></script>
-<script src="scene-build.js"></script>
-<script src="scene-surface.js"></script>
-<script src="scene-annotate.js"></script>
-<script src="scene-main.js"></script>
 <script>
-  ArchegonScene.mount(document.getElementById('scene'));
+  /* inline the figure so its CSS classes are styleable from the page */
+  (function () {
+    var host = document.getElementById('scene');
+    fetch(host.dataset.figure)
+      .then(function (r) { return r.text(); })
+      .then(function (svg) { host.innerHTML = svg; })
+      .catch(function (e) { console.error('figure failed', e); });
+  })();
 
   var hdr = document.querySelector('[data-header]');
   function sync(){ hdr.dataset.scrolled = window.scrollY > 16 ? 'true' : 'false'; }
