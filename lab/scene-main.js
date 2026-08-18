@@ -93,7 +93,6 @@ var ArchegonScene = (function () {
       vertexShader: FRAC_VERT,
       fragmentShader: FRAC_FRAG,
       transparent: true,
-      blending: THREE.AdditiveBlending,
       depthWrite: false
     }));
     scene.add(fracMesh);
@@ -199,6 +198,10 @@ var ArchegonScene = (function () {
       return this;
     },
     pulse: function () { pulse = 0; pulseActive = true; },
-    dispose: function () { running = false; }
+    dispose: function () { running = false; },
+    /* lab-only introspection */
+    _debug: function () {
+      return { camera: camera, scene: scene, renderer: renderer, host: host };
+    }
   };
 })();

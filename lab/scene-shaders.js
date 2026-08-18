@@ -38,19 +38,27 @@ var GLSL_COMMON = [
      Deliberately non-linear. A linear ramp reads as a plastic gradient;
      real incandescence spends most of its range in the dull-red band and
      then climbs fast, so the hot core stays small and precious. */
+  /* Incandescence is expensive. Almost all of the section is country rock
+     that has never seen a fracture, and it must stay genuinely black or
+     the hot core has nothing to be hot against. The warm band does not
+     open until 0.55 and full ember is reserved for the top 8%. */
   'vec3 thermal(float h){',
   '  h = clamp(h, 0.0, 1.0);',
-  '  vec3 c = mix(uColdCol, uWarmCol, smoothstep(0.05, 0.62, h));',
-  '  c = mix(c, uHotCol, smoothstep(0.55, 0.97, h));',
+  '  vec3 c = mix(uColdCol, uWarmCol, smoothstep(0.55, 0.90, h));',
+  '  c = mix(c, uHotCol, smoothstep(0.92, 1.0, h));',
   '  return c;',
   '}',
 
   /* Depth tint: near the datum the rock picks up daylight; far below it
      loses all of it. This is what makes the section read as a section
      rather than as an object floating in a void. */
+  /* Daylight does not penetrate rock. Only the top ~1.2 units of the cut
+     face catch any, and even then it is a dim cool wash, not a paper-white
+     mix — pushing 55% toward the page colour clipped the entire shallow
+     section to 255 and destroyed the strata. */
   'vec3 daylight(vec3 c, float worldY){',
-  '  float d = smoothstep(uDepth - 5.0, uDepth + 0.6, worldY);',
-  '  return mix(c, mix(c, uSurfCol, 0.55), d);',
+  '  float d = smoothstep(uDepth - 1.4, uDepth + 0.15, worldY);',
+  '  return c + uSurfCol * d * 0.055;',
   '}'
 ].join('\n');
 
@@ -80,19 +88,31 @@ var ROCK_FRAG = [
   'void main(){',
   /* mottle the heat field so isotherms follow the rock fabric */
   '  float grain = fbm(vPos * 0.42);',
-  '  float bed = fbm(vec3(vPos.x * 0.12, vPos.y * 1.9, vPos.z * 0.12));',
-  '  float h = vHeat * (0.72 + 0.55 * grain) - bed * 0.06;',
+  /* Bedding: gently folded, so strata drape rather than run dead level.
+     Low amplitude on purpose — this is a sedimentary basin over granite,
+     not a fold belt. */
+  '  float warp = fbm(vec3(vPos.x * 0.19, 0.0, 0.0)) * 1.1;',
+  '  float yb = vPos.y + warp;',
 
-  /* slow convective breathing, strongest where it is hottest */
-  '  h += sin(uTime * 0.5 + vPos.y * 1.4 + grain * 6.0) * 0.022 * vHeat;',
+  '  float h = vHeat * (0.86 + 0.28 * grain);',
+  '  h += sin(uTime * 0.45 + vPos.y * 1.2 + grain * 6.0) * 0.012 * vHeat;',
 
   '  vec3 col = thermal(h);',
-  /* bedding planes: thin darker laminae give the mass a stratigraphy */
-  '  float lam = smoothstep(0.42, 0.5, fract(vPos.y * 0.85 + bed * 0.5));',
-  '  col *= 0.82 + 0.18 * lam;',
-  /* grazing light picks out the cut face */
-  '  float rim = pow(1.0 - abs(vNor.z), 2.4);',
-  '  col += uWarmCol * rim * 0.05 * (0.3 + h);',
+
+  /* Strata as drawn lines, not as noise. A sharp periodic band with a
+     little thickness variation reads as a logged section; smooth mottle
+     reads as smoke. */
+  '  float band = fract(yb * 0.62);',
+  '  float lam = smoothstep(0.0, 0.05, band) * smoothstep(0.16, 0.10, band);',
+  '  col += vec3(0.052, 0.055, 0.066) * lam;',
+  '  col *= 0.90 + 0.10 * fbm(vec3(vPos.x * 0.9, yb * 3.4, 0.0));',
+
+  /* The granite basement: below the unconformity the fabric changes from
+     layered to massive, which is the geological reason the reservoir is
+     where it is. Worth one line to make that legible. */
+  '  float base = smoothstep(-5.6, -6.2, vPos.y);',
+  '  col = mix(col, col * vec3(0.86, 0.88, 1.00) + vec3(0.012, 0.012, 0.020) * grain, base);',
+
   '  col = daylight(col, vPos.y);',
   '  gl_FragColor = vec4(col, 1.0);',
   '}'
@@ -133,17 +153,21 @@ var FRAC_FRAG = [
   /* working fluid travelling the fracture: a travelling band, not a
      uniform glow, so the network reads as circulating rather than lit */
   '  float travel = fract(vFlow * 0.6 - uTime * 0.16);',
-  '  float band = smoothstep(0.0, 0.28, travel) * smoothstep(1.0, 0.62, travel);',
+  '  float band = smoothstep(0.0, 0.30, travel) * smoothstep(1.0, 0.64, travel);',
 
-  '  float h = 0.30 + 0.34 * band + uPulse * 0.22;',
-  '  vec3 col = thermal(h);',
+  /* Draw the conduit as a thin filament with a hot centre, not as a glowing
+     volume. Grazing angles get DARKER, not brighter: the silhouette edge is
+     where the tube turns away, and brightening it is what made 200 overlapping
+     wings sum into a blob. */
+  '  float core = pow(facing, 1.6);',
 
-  /* The tube edge blooms, but gently. These are additively blended and
-     there are ~200 of them overlapping in depth; anything above ~0.2 here
-     stacks into a white fireball rather than a legible network. */
-  '  col += uHotCol * pow(1.0 - facing, 3.5) * 0.10;',
-  '  col *= 0.22 + 0.30 * band;',
+  '  float h = 0.58 + 0.30 * band + uPulse * 0.18;',
+  '  vec3 col = thermal(h) * core;',
+  '  col += uHotCol * band * core * 0.30;',
+
   '  col = daylight(col, vPos.y);',
-  '  gl_FragColor = vec4(col * uGain, 1.0);',
+  /* alpha, not additive: overlapping fractures occlude instead of summing */
+  '  float a = clamp(core * (0.34 + 0.52 * band), 0.0, 1.0) * uGain;',
+  '  gl_FragColor = vec4(col, a);',
   '}'
 ].join('\n');
