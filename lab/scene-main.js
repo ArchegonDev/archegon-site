@@ -6,7 +6,7 @@
 var ArchegonScene = (function () {
 
   var renderer, scene, camera, clock;
-  var rockMesh, fracMesh, wellMesh, thermals, campus, datum, annotations;
+  var rockMesh, fracMesh, wellMesh, campus, datum, annotations;
   var uniforms, fracUniforms, wellUniforms;
   var pointer = { x: 0, y: 0 }, smooth = { x: 0, y: 0 };
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -14,20 +14,24 @@ var ArchegonScene = (function () {
   var pulse = 0, pulseActive = false;
   var SHIFT = 0, VSHIFT = 0, NARROW = false;
 
+  /* Printed-section palette.
+     The scene is a figure on paper, not an object in a dark room. Rock is
+     paper tinted toward ink with depth; ember is an accent reserved for
+     the reservoir and nothing else. */
   var PALETTE = {
-    hot:   [1.00, 0.47, 0.19],   /* ember  #d66b35 pushed hotter */
-    warm:  [0.50, 0.22, 0.10],
-    cold:  [0.085, 0.095, 0.125],
-    surf:  [0.96, 0.945, 0.918]  /* paper  #f5f1ea */
+    paper: [0.961, 0.945, 0.918],   /* #f5f1ea */
+    ink:   [0.063, 0.078, 0.094],   /* #101418 */
+    ember: [0.839, 0.420, 0.208],   /* #d66b35 */
+    slate: [0.268, 0.280, 0.296]
   };
 
   function buildMaterials() {
     uniforms = {
       uTime:    { value: 0 },
-      uHotCol:  { value: new THREE.Color().fromArray(PALETTE.hot) },
-      uWarmCol: { value: new THREE.Color().fromArray(PALETTE.warm) },
-      uColdCol: { value: new THREE.Color().fromArray(PALETTE.cold) },
-      uSurfCol: { value: new THREE.Color().fromArray(PALETTE.surf) },
+      uHotCol:  { value: new THREE.Color().fromArray(PALETTE.ember) },
+      uWarmCol: { value: new THREE.Color().fromArray(PALETTE.slate) },
+      uColdCol: { value: new THREE.Color().fromArray(PALETTE.paper) },
+      uSurfCol: { value: new THREE.Color().fromArray(PALETTE.ink) },
       uDepth:   { value: DATUM },
       uReach:   { value: 3.0 }
     };
@@ -74,7 +78,7 @@ var ArchegonScene = (function () {
     buildMaterials();
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x08090c);
+    scene.background = new THREE.Color(0xf5f1ea);
 
     var wells = buildWells();
     var fractures = buildFractures(rng);
@@ -106,8 +110,8 @@ var ArchegonScene = (function () {
     }));
     scene.add(wellMesh);
 
-    thermals = buildThermals(rng, 260);
-    scene.add(thermals);
+    /* No convective particles: on a printed section they read as sparkle,
+       which is exactly the register this is trying to leave behind. */
 
     campus = buildCampus(rng);
     scene.add(campus);
@@ -159,7 +163,6 @@ var ArchegonScene = (function () {
        is scaled down far enough that it would only read as noise */
     if (annotations) annotations.visible = !NARROW;
 
-    thermals.material.uniforms.uScale.value = h * 0.5;
   }
 
   function frame() {
@@ -168,7 +171,6 @@ var ArchegonScene = (function () {
 
     var dt = Math.min(clock.getDelta(), 0.05);
     if (!REDUCED) uniforms.uTime.value += dt;
-    thermals.material.uniforms.uTime.value = uniforms.uTime.value;
 
     smooth.x += (pointer.x - smooth.x) * 0.055;
     smooth.y += (pointer.y - smooth.y) * 0.055;

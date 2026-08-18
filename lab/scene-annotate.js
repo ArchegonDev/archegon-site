@@ -28,7 +28,7 @@ function buildAnnotations(opts) {
   function cx(x) { return (x + ANN.w / 2) / ANN.w * PX; }
   function cy(y) { return (ANN.top - y) / (ANN.top - ANN.bottom) * H; }
 
-  var INK = 'rgba(232,226,216,';
+  var INK = 'rgba(16,20,24,';
   var EMBER = 'rgba(214,107,53,';
 
   g.clearRect(0, 0, PX, H);
@@ -42,7 +42,7 @@ function buildAnnotations(opts) {
   var depths = [0, -1, -2, -3, -4, -5];        /* km */
   var i;
 
-  g.strokeStyle = INK + '0.20)';
+  g.strokeStyle = INK + '0.30)';
   g.lineWidth = 1;
   g.beginPath();
   g.moveTo(sx, cy(0));
@@ -54,14 +54,14 @@ function buildAnnotations(opts) {
     var y = cy(wy);
     var major = i % 1 === 0;
 
-    g.strokeStyle = INK + (major ? '0.34)' : '0.16)');
+    g.strokeStyle = INK + (major ? '0.48)' : '0.24)');
     g.beginPath();
     g.moveTo(sx, y);
     g.lineTo(sx + (major ? 9 : 5), y);
     g.stroke();
 
     if (major) {
-      g.fillStyle = INK + '0.50)';
+      g.fillStyle = INK + '0.62)';
       g.textAlign = 'right';
       g.fillText(depths[i] === 0 ? '0' : String(-depths[i]) + ' km', sx - 7, y);
     }
@@ -71,7 +71,7 @@ function buildAnnotations(opts) {
   g.translate(sx - 34, cy(-5.2));
   g.rotate(-Math.PI / 2);
   g.textAlign = 'center';
-  g.fillStyle = INK + '0.34)';
+  g.fillStyle = INK + '0.46)';
   g.font = '500 9px Inter, system-ui, sans-serif';
   g.setLineDash([]);
   g.fillText('DEPTH BELOW DATUM', 0, 0);
@@ -89,7 +89,7 @@ function buildAnnotations(opts) {
   for (i = 0; i < horizons.length; i++) {
     var hz = horizons[i];
     var hy = cy(hz.y);
-    g.strokeStyle = INK + '0.13)';
+    g.strokeStyle = INK + '0.20)';
     g.setLineDash([2, 4]);
     g.beginPath();
     g.moveTo(cx(4.15), hy);
@@ -114,14 +114,14 @@ function buildAnnotations(opts) {
   g.font = '700 13px Inter, system-ui, sans-serif';
   g.fillText('190 \u00B0C', rx + 80, ry + 62);
 
-  g.fillStyle = INK + '0.42)';
+  g.fillStyle = INK + '0.54)';
   g.font = '500 9px Inter, system-ui, sans-serif';
   g.fillText('STIMULATED RESERVOIR VOLUME', rx + 80, ry + 76);
 
   /* ---- well labels -------------------------------------------------- */
   g.font = '500 9px Inter, system-ui, sans-serif';
   g.textAlign = 'center';
-  g.fillStyle = INK + '0.44)';
+  g.fillStyle = INK + '0.58)';
   g.fillText('INJECTOR', cx(-3.30), cy(1.42));
   g.fillText('PRODUCER', cx(3.42), cy(1.42));
 

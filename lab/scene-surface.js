@@ -26,8 +26,8 @@ function buildCampus(rng) {
     { x:  3.30, w: 0.86, d: 0.54, h: 0.17 }
   ];
 
-  var shell = new THREE.MeshBasicMaterial({ color: 0x0a0c10 });
-  var trim  = new THREE.MeshBasicMaterial({ color: 0x1b212b });
+  var shell = new THREE.MeshBasicMaterial({ color: 0x101418 });
+  var trim  = new THREE.MeshBasicMaterial({ color: 0x3a4048 });
   var i, j;
 
   for (i = 0; i < halls.length; i++) {
@@ -62,36 +62,14 @@ function buildCampus(rng) {
 function buildDatum() {
   var group = new THREE.Group();
 
-  var g = new THREE.PlaneGeometry(15.0, 0.016);
-  var m = new THREE.MeshBasicMaterial({
-    color: 0xd8cfc0, transparent: true, opacity: 0.5
-  });
-  var line = new THREE.Mesh(g, m);
+  /* The ground line is the heaviest rule in the drawing: on a printed
+     section the datum is what every depth is measured from. */
+  var line = new THREE.Mesh(
+    new THREE.PlaneGeometry(15.0, 0.020),
+    new THREE.MeshBasicMaterial({ color: 0x101418, transparent: true, opacity: 0.72 })
+  );
   line.position.set(0, DATUM, 0.02);
   group.add(line);
-
-  /* a soft band of daylight sitting on the surface */
-  var band = new THREE.Mesh(
-    new THREE.PlaneGeometry(15.0, 1.5),
-    new THREE.ShaderMaterial({
-      transparent: true,
-      depthWrite: false,
-      uniforms: { uCol: { value: new THREE.Color(0xf5f1ea) } },
-      vertexShader: [
-        'varying vec2 vUv;',
-        'void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }'
-      ].join('\n'),
-      fragmentShader: [
-        'uniform vec3 uCol; varying vec2 vUv;',
-        'void main(){',
-        '  float a = smoothstep(0.0, 0.62, vUv.y) * 0.05;',
-        '  gl_FragColor = vec4(uCol, a);',
-        '}'
-      ].join('\n')
-    })
-  );
-  band.position.set(0, DATUM + 0.75, -0.3);
-  group.add(band);
 
   return group;
 }

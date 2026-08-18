@@ -42,10 +42,17 @@ var GLSL_COMMON = [
      that has never seen a fracture, and it must stay genuinely black or
      the hot core has nothing to be hot against. The warm band does not
      open until 0.55 and full ember is reserved for the top 8%. */
+  /* Paper -> slate -> ember. Ember is an accent, not a light source: it
+     appears only where the reservoir has actually been stimulated, and
+     even then it tints rather than glows. */
+  /* Paper -> slate -> ember. The unheated rock must still sit clearly
+     below the page tone or the section dissolves into the background;
+     a printed figure needs a solid mid-grey field to draw on. */
   'vec3 thermal(float h){',
   '  h = clamp(h, 0.0, 1.0);',
-  '  vec3 c = mix(uColdCol, uWarmCol, smoothstep(0.40, 0.86, h));',
-  '  c = mix(c, uHotCol, smoothstep(0.88, 1.0, h));',
+  '  vec3 base = mix(uColdCol, uWarmCol, 0.55);',
+  '  vec3 c = mix(base, uWarmCol, smoothstep(0.25, 0.85, h) * 0.75);',
+  '  c = mix(c, uHotCol, smoothstep(0.60, 1.0, h) * 0.88);',
   '  return c;',
   '}',
 
@@ -56,9 +63,11 @@ var GLSL_COMMON = [
      face catch any, and even then it is a dim cool wash, not a paper-white
      mix — pushing 55% toward the page colour clipped the entire shallow
      section to 255 and destroyed the strata. */
+  /* On paper, depth reads as tone: the section gets very slightly denser
+     with depth so the eye knows which way is down without any lighting. */
   'vec3 daylight(vec3 c, float worldY){',
-  '  float d = smoothstep(uDepth - 1.4, uDepth + 0.15, worldY);',
-  '  return c + uSurfCol * d * 0.055;',
+  '  float d = smoothstep(uDepth + 0.4, uDepth - 10.0, worldY);',
+  '  return mix(c, mix(c, uSurfCol, 0.30), d);',
   '}'
 ].join('\n');
 
@@ -99,19 +108,19 @@ var ROCK_FRAG = [
 
   '  vec3 col = thermal(h);',
 
-  /* Strata as drawn lines, not as noise. A sharp periodic band with a
-     little thickness variation reads as a logged section; smooth mottle
-     reads as smoke. */
+  /* Strata drawn as ink rules on paper, the way a logged section is
+     printed: a fine dark line at each bedding contact, not a glow. */
   '  float band = fract(yb * 0.62);',
-  '  float lam = smoothstep(0.0, 0.05, band) * smoothstep(0.16, 0.10, band);',
-  '  col += vec3(0.052, 0.055, 0.066) * lam;',
-  '  col *= 0.90 + 0.10 * fbm(vec3(vPos.x * 0.9, yb * 3.4, 0.0));',
+  '  float lam = smoothstep(0.0, 0.035, band) * smoothstep(0.11, 0.075, band);',
+  '  col = mix(col, uSurfCol, lam * 0.34);',
+  '  col = mix(col, uSurfCol, fbm(vec3(vPos.x * 0.9, yb * 3.4, 0.0)) * 0.09);',
 
-  /* The granite basement: below the unconformity the fabric changes from
-     layered to massive, which is the geological reason the reservoir is
-     where it is. Worth one line to make that legible. */
+  /* Below the unconformity the fabric changes from layered sediment to
+     massive granite. Rendered as stipple rather than lamination, which is
+     the standard cartographic convention for crystalline basement. */
   '  float base = smoothstep(-5.6, -6.2, vPos.y);',
-  '  col = mix(col, col * vec3(0.86, 0.88, 1.00) + vec3(0.012, 0.012, 0.020) * grain, base);',
+  '  float stip = smoothstep(0.62, 0.68, fbm(vPos * 2.6));',
+  '  col = mix(col, mix(col, uSurfCol, stip * 0.16), base);',
 
   '  col = daylight(col, vPos.y);',
   '  gl_FragColor = vec4(col, 1.0);',
@@ -161,13 +170,12 @@ var FRAC_FRAG = [
      wings sum into a blob. */
   '  float core = pow(facing, 1.6);',
 
-  '  float h = 0.58 + 0.30 * band + uPulse * 0.18;',
-  '  vec3 col = thermal(h) * core;',
-  '  col += uHotCol * band * core * 0.30;',
+  /* Drawn, not lit. The conduit is an ember-inked stroke on the section;
+     the travelling band modulates its density so circulation reads as
+     movement along a line rather than as a glowing tube. */
+  '  vec3 col = mix(uSurfCol, uHotCol, 0.55 + 0.45 * band + uPulse * 0.20);',
 
-  '  col = daylight(col, vPos.y);',
-  /* alpha, not additive: overlapping fractures occlude instead of summing */
-  '  float a = clamp(core * (0.34 + 0.52 * band), 0.0, 1.0) * uGain;',
+  '  float a = clamp(core * (0.62 + 0.34 * band), 0.0, 1.0) * uGain;',
   '  gl_FragColor = vec4(col, a);',
   '}'
 ].join('\n');
