@@ -6,17 +6,18 @@
 var ArchegonScene = (function () {
 
   var renderer, scene, camera, clock;
-  var rockMesh, fracMesh, wellMesh, thermals, campus, datum;
+  var rockMesh, fracMesh, wellMesh, thermals, campus, datum, annotations;
   var uniforms, fracUniforms, wellUniforms;
   var pointer = { x: 0, y: 0 }, smooth = { x: 0, y: 0 };
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var host, running = false;
   var pulse = 0, pulseActive = false;
+  var SHIFT = 0;
 
   var PALETTE = {
-    hot:   [0.98, 0.42, 0.16],   /* ember  #d66b35 pushed hotter */
-    warm:  [0.62, 0.26, 0.11],
-    cold:  [0.055, 0.065, 0.090],
+    hot:   [1.00, 0.47, 0.19],   /* ember  #d66b35 pushed hotter */
+    warm:  [0.50, 0.22, 0.10],
+    cold:  [0.085, 0.095, 0.125],
     surf:  [0.96, 0.945, 0.918]  /* paper  #f5f1ea */
   };
 
@@ -113,6 +114,9 @@ var ArchegonScene = (function () {
 
     datum = buildDatum();
     scene.add(datum);
+
+    annotations = buildAnnotations();
+    scene.add(annotations);
   }
 
   function layout() {
@@ -128,9 +132,16 @@ var ArchegonScene = (function () {
     var vFov = 34;
     camera.fov = vFov;
     var tan = 2 * Math.tan(vFov * Math.PI / 360);
-    var fitH = 11.6 / tan;
-    var fitW = (13.6 / camera.aspect) / tan;
+    var fitH = 11.0 / tan;
+    var fitW = (13.0 / camera.aspect) / tan;
     camera.position.z = Math.max(fitH, fitW) * 1.02;
+
+    /* Push the section right on wide screens so the headline sits over
+       undisturbed rock instead of over the reservoir. Below ~900px there
+       is no room to do this, so the scene re-centres and the copy moves
+       above it instead. */
+    SHIFT = camera.aspect > 1.15 ? 2.15 : 0.0;
+    camera.setViewOffset(w, h, -SHIFT * (w / 13.0), 0, w, h);
     camera.updateProjectionMatrix();
 
     thermals.material.uniforms.uScale.value = h * 0.5;

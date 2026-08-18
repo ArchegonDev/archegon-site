@@ -26,9 +26,12 @@
   /* copy sits over the cold upper-left, away from the reservoir glow */
   .hero-copy{
     position:relative; z-index:3;
-    max-width:760px;
-    padding:clamp(28px,6vw,72px);
-    padding-top:clamp(80px,14vh,180px);
+    max-width:min(46vw,620px);
+    padding:clamp(28px,4.5vw,64px);
+    padding-top:clamp(96px,20vh,220px);
+  }
+  @media (max-width:900px){
+    .hero-copy{ max-width:none; padding-top:clamp(64px,10vh,120px); }
   }
   .eyebrow{
     color:var(--amber);
@@ -104,6 +107,7 @@
 <script src="scene-shaders.js"></script>
 <script src="scene-build.js"></script>
 <script src="scene-surface.js"></script>
+<script src="scene-annotate.js"></script>
 <script src="scene-main.js"></script>
 <script>
   ArchegonScene.mount(document.getElementById('scene'));

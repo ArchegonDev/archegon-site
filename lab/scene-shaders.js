@@ -44,8 +44,8 @@ var GLSL_COMMON = [
      open until 0.55 and full ember is reserved for the top 8%. */
   'vec3 thermal(float h){',
   '  h = clamp(h, 0.0, 1.0);',
-  '  vec3 c = mix(uColdCol, uWarmCol, smoothstep(0.55, 0.90, h));',
-  '  c = mix(c, uHotCol, smoothstep(0.92, 1.0, h));',
+  '  vec3 c = mix(uColdCol, uWarmCol, smoothstep(0.40, 0.86, h));',
+  '  c = mix(c, uHotCol, smoothstep(0.88, 1.0, h));',
   '  return c;',
   '}',
 
