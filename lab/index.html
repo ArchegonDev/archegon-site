@@ -3,121 +3,130 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Archegon hero — scene lab</title>
-<style>
-  :root{
-    --paper:#f5f1ea; --ink:#101418; --ember:#d66b35;
-    --amber:#f0b35a; --line:#d4c9ba; --muted:#665f56;
-  }
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  body{
-    background:var(--paper); color:var(--ink);
-    font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-    line-height:1.5;
-  }
-
-  .hero{
-    position:relative;
-    width:100%; height:100svh; min-height:600px;
-    overflow:hidden; isolation:isolate;
-    background:var(--paper);
-  }
-  .scene{ position:absolute; inset:0; z-index:1; }
-  .scene canvas{ width:100%; height:100%; display:block; }
-
-  /* copy sits over the cold upper-left, away from the reservoir glow */
-  .hero-copy{
-    position:relative; z-index:3;
-    max-width:min(46vw,620px);
-    padding:clamp(28px,4.5vw,64px);
-    padding-top:clamp(96px,20vh,220px);
-  }
-  @media (max-width:900px){
-    .hero-copy{
-      max-width:none;
-      padding-top:clamp(52px,7vh,90px);
-    }
-    /* the scene owns the lower half on a phone, so fade the copy into it
-       rather than letting type sit directly on the strata */
-    .hero::after{
-      content:''; position:absolute; inset:0; z-index:2;
-      background:linear-gradient(180deg,
-        rgba(245,241,234,.94) 0%, rgba(245,241,234,.80) 34%, rgba(245,241,234,0) 62%);
-      pointer-events:none;
-    }
-  }
-  /* Fervo register: very small, wide-tracked eyebrow; a large but LIGHT
-     headline; and a lede that is barely heavier than body copy. The
-     confidence comes from restraint, not from weight. */
-  .eyebrow{
-    color:var(--muted);
-    font-size:11px; font-weight:600;
-    letter-spacing:.19em; text-transform:uppercase;
-    margin-bottom:26px;
-  }
-  h1{
-    font-size:clamp(38px,5.4vw,66px);
-    line-height:1.16; font-weight:300;
-    letter-spacing:-.012em;
-    margin-bottom:26px;
-  }
-  .lede{
-    font-size:clamp(16px,1.35vw,19px);
-    font-weight:300; line-height:1.6; max-width:52ch;
-    color:#333;
-  }
-  .actions{ display:flex; gap:14px; margin-top:40px; flex-wrap:wrap; }
-  .btn{
-    display:inline-flex; align-items:center;
-    padding:14px 26px; border-radius:2px;
-    font-size:12px; font-weight:600;
-    letter-spacing:.12em; text-transform:uppercase;
-    text-decoration:none; cursor:pointer; border:1px solid transparent;
-  }
-  .btn.primary{ background:var(--ink); color:var(--paper); }
-  .btn.secondary{ border-color:rgba(16,20,24,.28); color:var(--ink); }
-
-  /* lab controls */
-  .panel{
-    position:fixed; right:14px; bottom:14px; z-index:20;
-    display:flex; gap:8px; flex-wrap:wrap;
-    background:rgba(8,9,12,.82); padding:10px;
-    border:1px solid rgba(245,241,234,.14); border-radius:9px;
-    backdrop-filter:blur(10px);
-  }
-  .panel button{
-    font:inherit; font-size:12px; cursor:pointer;
-    padding:7px 11px; border-radius:6px;
-    background:transparent; color:var(--paper);
-    border:1px solid rgba(245,241,234,.24);
-  }
-  .panel button:hover{ background:rgba(245,241,234,.09); }
-</style>
+<title>Archegon — Geothermal-powered data centres</title>
+<link rel="stylesheet" href="page.css">
 </head>
 <body>
 
-<section class="hero">
-  <div class="scene" id="scene"></div>
+<header class="site-header" data-header>
+  <a class="wordmark" href="#top">Archegon<i></i></a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="#thesis">Thesis</a>
+    <a href="#projects">Projects</a>
+    <a href="#opportunity">Opportunity</a>
+    <a href="#research">Research</a>
+    <a href="#about">About</a>
+  </nav>
+  <a class="header-cta" href="#contact">Register interest</a>
+</header>
 
-  <div class="hero-copy">
-    <p class="eyebrow">Firm clean power x AI compute</p>
-    <h1>Bringing compute to the heat</h1>
-    <p class="lede">
-      Archegon develops geothermal-powered data centres — pairing 24/7 firm clean
-      power with AI inference, where the grid cannot reach and intermittent
-      renewables cannot follow.
-    </p>
-    <div class="actions">
-      <a class="btn primary" href="#">See the thesis</a>
-      <a class="btn secondary" href="#">Get in touch</a>
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Firm clean power &times; AI compute</p>
+      <h1>Bringing compute to the heat</h1>
+      <p class="lede">
+        Archegon develops geothermal-powered data centres &mdash; pairing 24/7 firm
+        clean power with AI inference, where the grid cannot reach and intermittent
+        renewables cannot follow.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#thesis">See the thesis</a>
+        <a class="btn secondary" href="#contact">Get in touch</a>
+      </div>
     </div>
-  </div>
-</section>
 
-<div class="panel">
-  <button id="pulse">Circulation pulse</button>
-  <button id="reload">Regrow reservoir</button>
-</div>
+    <figure class="hero-figure">
+      <div class="scene" id="scene"></div>
+      <figcaption class="figure-caption">
+        <span><b>Fig. 1</b> &nbsp;Enhanced geothermal doublet, schematic section</span>
+        <span>Illustrative &middot; not to scale</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="signals">
+    <div>
+      <strong>Power, not silicon</strong>
+      <span>AI growth is constrained by firm electricity.</span>
+    </div>
+    <div>
+      <strong>~90% capacity factor</strong>
+      <span>Geothermal naturally matches a 24/7 load.</span>
+    </div>
+    <div>
+      <strong>Compute to heat</strong>
+      <span>Co-location can skip the grid queue.</span>
+    </div>
+  </section>
+
+  <section class="band" id="thesis">
+    <div class="band-head">
+      <p class="eyebrow">The thesis</p>
+      <h2>The grid is full, and the queue is broken</h2>
+    </div>
+    <div class="two-col">
+      <p>
+        New large grid connections face waits measured in years. Whoever controls
+        firm power now controls the AI buildout. Inference is a steady, 24/7 load,
+        and it pairs naturally with geothermal's high capacity factor.
+      </p>
+      <p>
+        Some of the hottest rock on Earth sits unused &mdash; not because the
+        technology fails, but because nobody put the demand next to it. Archegon
+        brings the data centre to the heat, off-grid where possible, and behind the
+        meter where it matters.
+      </p>
+    </div>
+
+    <ol class="chain">
+      <li>Power is the constraint</li>
+      <li>Geothermal is firm</li>
+      <li>Co-locate compute</li>
+      <li>Skip the grid queue</li>
+      <li>Control clean capacity</li>
+      <li>AI in a geographically safe part of the world</li>
+    </ol>
+
+    <p class="source-note">
+      Capacity-factor and market statements are indicative and drawn from public
+      benchmarks. They are not financial projections.
+    </p>
+  </section>
+
+  <section class="band tint" id="projects">
+    <div class="band-head">
+      <p class="eyebrow">The projects</p>
+      <h2>Two routes, two risk profiles</h2>
+    </div>
+    <div class="two-col">
+      <article class="card">
+        <p class="post-meta">New Zealand &mdash; The Build</p>
+        <h3>Proven geothermal, grid-adjacent AI campus</h3>
+        <p>
+          A preliminary 100 MW Phase 1 concept anchored by firm geothermal power.
+          Candidate routes include Central North Island geothermal proximity and
+          colder-climate Southland infrastructure paths, subject to site, power,
+          fibre, consent, and partner diligence.
+        </p>
+        <a class="read-link" href="#">Download New Zealand summary</a>
+      </article>
+      <article class="card">
+        <p class="post-meta">Australia &mdash; The Bet</p>
+        <h3>Off-grid Cooper Basin compute hub</h3>
+        <p>
+          A frontier Cooper Basin route combining enhanced geothermal systems,
+          solar, storage, dry cooling, and resilient backhaul. The central
+          diligence question is whether the subsurface, water, cooling, and
+          customer gates can be de-risked before any larger campus build.
+        </p>
+        <a class="read-link" href="#">Download Australia summary</a>
+      </article>
+    </div>
+  </section>
+
+</main>
 
 <script src="lib/three.min.js"></script>
 <script src="scene-core.js"></script>
@@ -128,8 +137,11 @@
 <script src="scene-main.js"></script>
 <script>
   ArchegonScene.mount(document.getElementById('scene'));
-  document.getElementById('pulse').onclick = function(){ ArchegonScene.pulse(); };
-  document.getElementById('reload').onclick = function(){ location.reload(); };
+
+  var hdr = document.querySelector('[data-header]');
+  function sync(){ hdr.dataset.scrolled = window.scrollY > 16 ? 'true' : 'false'; }
+  sync();
+  window.addEventListener('scroll', sync, { passive:true });
 </script>
 </body>
 </html>

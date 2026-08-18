@@ -78,7 +78,7 @@ var ArchegonScene = (function () {
     buildMaterials();
 
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf5f1ea);
+    scene.background = null;   /* the page provides the paper */
 
     var wells = buildWells();
     var fractures = buildFractures(rng);
@@ -133,34 +133,27 @@ var ArchegonScene = (function () {
        the lower third. Fit to whichever axis is binding, then pad, so a
        tall phone viewport does not crop the wellheads off the top nor the
        fracture wings off the sides. */
+    /* The scene now occupies its own panel beside the copy rather than
+       sitting behind it, so the framing is a straight fit with padding —
+       no view offset, no dodging the headline. */
     var vFov = 34;
     camera.fov = vFov;
     var tan = 2 * Math.tan(vFov * Math.PI / 360);
-    NARROW = camera.aspect < 1.05;
+    NARROW = w < 520;
 
-    /* On a phone the section cannot compete with the copy for the same
-       pixels. Zoom into the reservoir and doublet, drop the composition
-       low, and let the type own the top half. */
-    var needH = NARROW ? 7.6 : 11.0;
-    var needW = NARROW ? 9.4 : 13.0;
+    /* The panel is usually portrait, so fitting the full 14.6-unit width
+       pushes the camera far enough back that the section reads as a stamp.
+       Fit height, and accept that the outermost fracture wings crop — a
+       section drawing is allowed to run off its own frame. */
+    var needH = 11.4;
+    var needW = 11.0;
     var fitH = needH / tan;
     var fitW = (needW / camera.aspect) / tan;
-    camera.position.z = Math.max(fitH, fitW) * 1.02;
-
-    /* Wide: push the section right so the headline sits over undisturbed
-       rock. Narrow: push it down instead. */
-    SHIFT = NARROW ? 0 : 2.15;
-    VSHIFT = NARROW ? -1.45 : 0;
-    camera.setViewOffset(
-      w, h,
-      -SHIFT * (w / needW),
-      VSHIFT * (h / needH),
-      w, h
-    );
+    camera.position.z = Math.min(fitH, fitW) * 1.04;
     camera.updateProjectionMatrix();
 
-    /* the annotation plane carries fine 9px type; hide it when the scene
-       is scaled down far enough that it would only read as noise */
+    /* the annotation plane carries fine 9px type; hide it when the panel
+       is too small for that type to resolve */
     if (annotations) annotations.visible = !NARROW;
 
   }
@@ -175,7 +168,7 @@ var ArchegonScene = (function () {
     smooth.x += (pointer.x - smooth.x) * 0.055;
     smooth.y += (pointer.y - smooth.y) * 0.055;
 
-    var cy = NARROW ? -6.1 : -4.2;
+    var cy = -4.6;
     if (!REDUCED) {
       camera.position.x = smooth.x * 0.55;
       camera.position.y = cy + smooth.y * 0.35;
@@ -208,10 +201,11 @@ var ArchegonScene = (function () {
       host.appendChild(canvas);
 
       renderer = new THREE.WebGLRenderer({
-        canvas: canvas, antialias: true, alpha: false,
+        canvas: canvas, antialias: true, alpha: true,
         powerPreference: 'high-performance',
         preserveDrawingBuffer: true
       });
+      renderer.setClearColor(0x000000, 0);
       if ('outputEncoding' in renderer) renderer.outputEncoding = THREE.sRGBEncoding;
 
       camera = new THREE.PerspectiveCamera(34, 1, 0.1, 200);
