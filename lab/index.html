@@ -31,7 +31,18 @@
     padding-top:clamp(96px,20vh,220px);
   }
   @media (max-width:900px){
-    .hero-copy{ max-width:none; padding-top:clamp(64px,10vh,120px); }
+    .hero-copy{
+      max-width:none;
+      padding-top:clamp(52px,7vh,90px);
+    }
+    /* the scene owns the lower half on a phone, so fade the copy into it
+       rather than letting type sit directly on the strata */
+    .hero::after{
+      content:''; position:absolute; inset:0; z-index:2;
+      background:linear-gradient(180deg,
+        rgba(8,9,12,.90) 0%, rgba(8,9,12,.72) 34%, rgba(8,9,12,0) 62%);
+      pointer-events:none;
+    }
   }
   .eyebrow{
     color:var(--amber);

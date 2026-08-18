@@ -12,7 +12,7 @@ var ArchegonScene = (function () {
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var host, running = false;
   var pulse = 0, pulseActive = false;
-  var SHIFT = 0;
+  var SHIFT = 0, VSHIFT = 0, NARROW = false;
 
   var PALETTE = {
     hot:   [1.00, 0.47, 0.19],   /* ember  #d66b35 pushed hotter */
@@ -132,17 +132,32 @@ var ArchegonScene = (function () {
     var vFov = 34;
     camera.fov = vFov;
     var tan = 2 * Math.tan(vFov * Math.PI / 360);
-    var fitH = 11.0 / tan;
-    var fitW = (13.0 / camera.aspect) / tan;
+    NARROW = camera.aspect < 1.05;
+
+    /* On a phone the section cannot compete with the copy for the same
+       pixels. Zoom into the reservoir and doublet, drop the composition
+       low, and let the type own the top half. */
+    var needH = NARROW ? 7.6 : 11.0;
+    var needW = NARROW ? 9.4 : 13.0;
+    var fitH = needH / tan;
+    var fitW = (needW / camera.aspect) / tan;
     camera.position.z = Math.max(fitH, fitW) * 1.02;
 
-    /* Push the section right on wide screens so the headline sits over
-       undisturbed rock instead of over the reservoir. Below ~900px there
-       is no room to do this, so the scene re-centres and the copy moves
-       above it instead. */
-    SHIFT = camera.aspect > 1.15 ? 2.15 : 0.0;
-    camera.setViewOffset(w, h, -SHIFT * (w / 13.0), 0, w, h);
+    /* Wide: push the section right so the headline sits over undisturbed
+       rock. Narrow: push it down instead. */
+    SHIFT = NARROW ? 0 : 2.15;
+    VSHIFT = NARROW ? -1.45 : 0;
+    camera.setViewOffset(
+      w, h,
+      -SHIFT * (w / needW),
+      VSHIFT * (h / needH),
+      w, h
+    );
     camera.updateProjectionMatrix();
+
+    /* the annotation plane carries fine 9px type; hide it when the scene
+       is scaled down far enough that it would only read as noise */
+    if (annotations) annotations.visible = !NARROW;
 
     thermals.material.uniforms.uScale.value = h * 0.5;
   }
@@ -158,14 +173,15 @@ var ArchegonScene = (function () {
     smooth.x += (pointer.x - smooth.x) * 0.055;
     smooth.y += (pointer.y - smooth.y) * 0.055;
 
+    var cy = NARROW ? -6.1 : -4.2;
     if (!REDUCED) {
       camera.position.x = smooth.x * 0.55;
-      camera.position.y = -4.2 + smooth.y * 0.35;
-      camera.lookAt(smooth.x * 0.18, -4.2 + smooth.y * 0.10, 0);
+      camera.position.y = cy + smooth.y * 0.35;
+      camera.lookAt(smooth.x * 0.18, cy + smooth.y * 0.10, 0);
     } else {
       camera.position.x = 0;
-      camera.position.y = -4.2;
-      camera.lookAt(0, -4.2, 0);
+      camera.position.y = cy;
+      camera.lookAt(0, cy, 0);
     }
 
     if (pulseActive) {
