@@ -212,12 +212,19 @@ h3{
 }
 .card p{ font-size:15px; }
 .read-link{
-  margin-top:auto; padding-top:6px;
+  margin-top:6px; padding-top:6px;
   font-size:11px; font-weight:600;
   letter-spacing:.14em; text-transform:uppercase; color:var(--ink);
   border-bottom:1px solid var(--line-2); align-self:flex-start;
 }
 .read-link:hover{ border-bottom-color:var(--ember); color:var(--ember); }
+
+/* per-image attribution inside a card */
+.plate-credit{
+  margin-top:auto; padding-top:11px;
+  border-top:1px solid var(--line);
+  font-size:12px; line-height:1.5; color:var(--muted);
+}
 
 /* numbered logic chain */
 .chain{
@@ -241,4 +248,61 @@ h3{
 
 .source-note{
   margin-top:34px; font-size:13px; color:var(--muted); max-width:74ch;
+}
+
+/* ── photography ─────────────────────────────────────────────────────── */
+.plate{ margin:0; }
+.plate-media{
+  position:relative; overflow:hidden;
+  background:var(--paper-2);
+  aspect-ratio:4 / 3;
+}
+.plate-media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.88) contrast(1.02);
+}
+.plate figcaption{
+  padding-top:11px; margin-top:11px;
+  border-top:1px solid var(--line);
+  font-size:12px; line-height:1.5; color:var(--muted);
+}
+
+/* wide plate used as a band divider */
+.plate-wide .plate-media{ aspect-ratio:21 / 8; }
+@media (max-width:760px){
+  .plate-wide .plate-media{ aspect-ratio:3 / 2; }
+}
+
+/* project cards carry their own photograph */
+.card-media{
+  margin:calc(-1 * clamp(24px,2.6vw,38px));
+  margin-bottom:4px;
+  aspect-ratio:16 / 9; overflow:hidden;
+  background:var(--paper-2);
+}
+.card-media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(.88) contrast(1.02);
+}
+
+/* full-bleed band with a photographic ground */
+.band-photo{
+  position:relative; isolation:isolate;
+  color:var(--paper);
+  padding-block:clamp(88px,10vw,150px);
+}
+.band-photo img{
+  position:absolute; inset:0; z-index:-2;
+  width:100%; height:100%; object-fit:cover;
+}
+.band-photo::after{
+  content:''; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(90deg,
+    rgba(16,20,24,.90) 0%, rgba(16,20,24,.74) 46%, rgba(16,20,24,.42) 100%);
+}
+.band-photo h2, .band-photo strong{ color:var(--paper); }
+.band-photo .eyebrow{ color:#d9cfc0; }
+.band-photo p{ color:rgba(245,241,234,.82); }
+.band-photo .plate-note{
+  margin-top:34px; font-size:12px; color:rgba(245,241,234,.58);
 }
