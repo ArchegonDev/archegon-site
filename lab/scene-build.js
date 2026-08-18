@@ -139,10 +139,11 @@ function buildFractures(rng) {
  * merged isotherms that a real thermal field has.
  * -------------------------------------------------------------------- */
 function buildRock(fractures, wells) {
-  var W = 15.0, H = 13.0;
+  /* the mass runs from the datum down; sky is drawn separately */
+  var W = 15.0, H = 11.4;
   var NX = 150, NY = 130;
   var geo = new THREE.PlaneGeometry(W, H, NX, NY);
-  geo.translate(0, -4.2, -0.55);
+  geo.translate(0, DATUM - H / 2, -0.55);
 
   var pos = geo.attributes.position;
   var heat = new Float32Array(pos.count);

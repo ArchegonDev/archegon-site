@@ -7,7 +7,7 @@ var ArchegonScene = (function () {
 
   var renderer, scene, camera, clock;
   var rockMesh, fracMesh, wellMesh, campus, datum, annotations;
-  var uniforms, fracUniforms, wellUniforms;
+  var uniforms, fracUniforms;
   var pointer = { x: 0, y: 0 }, smooth = { x: 0, y: 0 };
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var host, running = false;
@@ -18,18 +18,23 @@ var ArchegonScene = (function () {
      The scene is a figure on paper, not an object in a dark room. Rock is
      paper tinted toward ink with depth; ember is an accent reserved for
      the reservoir and nothing else. */
+  /* Infographic palette, read off the Fervo EGS diagram convention:
+     flat tonal bands for the strata, one warm accent for hot fluid, one
+     cool accent for cold fluid, and near-black for the basement. No
+     photoreal shading anywhere. */
   var PALETTE = {
-    paper: [0.961, 0.945, 0.918],   /* #f5f1ea */
-    ink:   [0.063, 0.078, 0.094],   /* #101418 */
-    ember: [0.839, 0.420, 0.208],   /* #d66b35 */
-    slate: [0.268, 0.280, 0.296]
+    paper: [0.961, 0.945, 0.918],
+    ink:   [0.063, 0.078, 0.094],
+    hot:   [0.839, 0.420, 0.208],   /* #d66b35 hot brine  */
+    cold:  [0.404, 0.510, 0.600],   /* cool return leg    */
+    rock:  [0.150, 0.163, 0.180]
   };
 
   function buildMaterials() {
     uniforms = {
       uTime:    { value: 0 },
-      uHotCol:  { value: new THREE.Color().fromArray(PALETTE.ember) },
-      uWarmCol: { value: new THREE.Color().fromArray(PALETTE.slate) },
+      uHotCol:  { value: new THREE.Color().fromArray(PALETTE.hot) },
+      uWarmCol: { value: new THREE.Color().fromArray(PALETTE.rock) },
       uColdCol: { value: new THREE.Color().fromArray(PALETTE.paper) },
       uSurfCol: { value: new THREE.Color().fromArray(PALETTE.ink) },
       uDepth:   { value: DATUM },
@@ -44,10 +49,14 @@ var ArchegonScene = (function () {
       uDepth:   uniforms.uDepth,
       uReach:   uniforms.uReach,
       uPulse:   { value: 0 },
-      uGain:    { value: 1.0 }
+      uGain:    { value: 1.0 },
+      uTint:    { value: new THREE.Color(0.52, 0.55, 0.58) }
     };
-    /* the wells are casing, not fluid: opaque, cooler, drawn normally */
-    wellUniforms = {
+  }
+
+  /* one uniform set per conduit colour */
+  function legUniforms(tint, gain) {
+    return {
       uTime:    uniforms.uTime,
       uHotCol:  uniforms.uHotCol,
       uWarmCol: uniforms.uWarmCol,
@@ -56,7 +65,8 @@ var ArchegonScene = (function () {
       uDepth:   uniforms.uDepth,
       uReach:   uniforms.uReach,
       uPulse:   fracUniforms.uPulse,
-      uGain:    { value: 2.4 }
+      uGain:    { value: gain },
+      uTint:    { value: new THREE.Color().fromArray(tint) }
     };
   }
 
@@ -92,9 +102,10 @@ var ArchegonScene = (function () {
     }));
     scene.add(rockMesh);
 
-    /* fractures: emissive, additive so they bloom into the rock */
+    /* fractures: pale hairlines in the stimulated volume, like the fine
+       grey fracture ticks in a published EGS diagram */
     fracMesh = conduitMesh(fractures, new THREE.ShaderMaterial({
-      uniforms: fracUniforms,
+      uniforms: legUniforms([0.62, 0.64, 0.66], 0.92),
       vertexShader: FRAC_VERT,
       fragmentShader: FRAC_FRAG,
       transparent: true,
@@ -102,12 +113,18 @@ var ArchegonScene = (function () {
     }));
     scene.add(fracMesh);
 
-    /* wells: solid casing, cooler than the fractures */
-    wellMesh = conduitMesh(wells, new THREE.ShaderMaterial({
-      uniforms: wellUniforms,
-      vertexShader: FRAC_VERT,
-      fragmentShader: FRAC_FRAG
-    }));
+    /* the doublet, two-tone: cool fluid down the injector, hot brine up
+       the producer. This is the single clearest thing in Fervo's diagram
+       and it carries the whole closed-loop idea on its own. */
+    wellMesh = new THREE.Group();
+    wellMesh.add(conduitMesh([wells[0]], new THREE.ShaderMaterial({
+      uniforms: legUniforms(PALETTE.cold, 1.0),
+      vertexShader: FRAC_VERT, fragmentShader: FRAC_FRAG
+    })));
+    wellMesh.add(conduitMesh([wells[1]], new THREE.ShaderMaterial({
+      uniforms: legUniforms(PALETTE.hot, 1.0),
+      vertexShader: FRAC_VERT, fragmentShader: FRAC_FRAG
+    })));
     scene.add(wellMesh);
 
     /* No convective particles: on a printed section they read as sparkle,

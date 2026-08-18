@@ -96,33 +96,32 @@ var ROCK_FRAG = [
   'varying vec3 vNor;',
   'void main(){',
   /* mottle the heat field so isotherms follow the rock fabric */
-  '  float grain = fbm(vPos * 0.42);',
-  /* Bedding: gently folded, so strata drape rather than run dead level.
-     Low amplitude on purpose — this is a sedimentary basin over granite,
-     not a fold belt. */
-  '  float warp = fbm(vec3(vPos.x * 0.19, 0.0, 0.0)) * 1.1;',
-  '  float yb = vPos.y + warp;',
+  /* Flat infographic strata: a small number of discrete tonal bands with
+     gently undulating contacts. No per-pixel lighting, no mottling — the
+     idiom is vector illustration, not rendered rock. */
+  '  float warp = fbm(vec3(vPos.x * 0.17, 0.0, 0.0)) * 0.9;',
+  '  float y = vPos.y + warp;',
 
-  '  float h = vHeat * (0.86 + 0.28 * grain);',
-  '  h += sin(uTime * 0.45 + vPos.y * 1.2 + grain * 6.0) * 0.012 * vHeat;',
+  '  vec3 topsoil  = vec3(0.780, 0.762, 0.726);',
+  '  vec3 sed1     = vec3(0.412, 0.420, 0.430);',
+  '  vec3 sed2     = vec3(0.310, 0.320, 0.334);',
+  '  vec3 basement = vec3(0.128, 0.138, 0.152);',
 
-  '  vec3 col = thermal(h);',
+  '  vec3 col = topsoil;',
+  '  col = mix(col, sed1,     step(y, -0.42));',
+  '  col = mix(col, sed2,     step(y, -2.60));',
+  '  col = mix(col, basement, step(y, -5.30));',
 
-  /* Strata drawn as ink rules on paper, the way a logged section is
-     printed: a fine dark line at each bedding contact, not a glow. */
-  '  float band = fract(yb * 0.62);',
-  '  float lam = smoothstep(0.0, 0.035, band) * smoothstep(0.11, 0.075, band);',
-  '  col = mix(col, uSurfCol, lam * 0.34);',
-  '  col = mix(col, uSurfCol, fbm(vec3(vPos.x * 0.9, yb * 3.4, 0.0)) * 0.09);',
+  /* thin contact rules at each boundary, the way an infographic draws them */
+  '  float c1 = smoothstep(0.055, 0.0, abs(y + 0.42));',
+  '  float c2 = smoothstep(0.055, 0.0, abs(y + 2.60));',
+  '  float c3 = smoothstep(0.070, 0.0, abs(y + 5.30));',
+  '  col = mix(col, vec3(0.086, 0.094, 0.106), max(max(c1, c2), c3) * 0.55);',
 
-  /* Below the unconformity the fabric changes from layered sediment to
-     massive granite. Rendered as stipple rather than lamination, which is
-     the standard cartographic convention for crystalline basement. */
-  '  float base = smoothstep(-5.6, -6.2, vPos.y);',
-  '  float stip = smoothstep(0.62, 0.68, fbm(vPos * 2.6));',
-  '  col = mix(col, mix(col, uSurfCol, stip * 0.16), base);',
+  /* The heated halo tints the basement toward the hot accent. Kept as a
+     wide soft wash so it reads as "this volume is hot", not as glow. */
+  '  col = mix(col, uHotCol, clamp(vHeat, 0.0, 1.0) * 0.42);',
 
-  '  col = daylight(col, vPos.y);',
   '  gl_FragColor = vec4(col, 1.0);',
   '}'
 ].join('\n');
@@ -151,6 +150,7 @@ var FRAC_FRAG = [
   GLSL_COMMON,
   'uniform float uPulse;',
   'uniform float uGain;',
+  'uniform vec3 uTint;',
   'varying float vFlow;',
   'varying vec3 vPos;',
   'varying vec3 vNor;',
@@ -168,14 +168,12 @@ var FRAC_FRAG = [
      volume. Grazing angles get DARKER, not brighter: the silhouette edge is
      where the tube turns away, and brightening it is what made 200 overlapping
      wings sum into a blob. */
-  '  float core = pow(facing, 1.6);',
-
-  /* Drawn, not lit. The conduit is an ember-inked stroke on the section;
-     the travelling band modulates its density so circulation reads as
-     movement along a line rather than as a glowing tube. */
-  '  vec3 col = mix(uSurfCol, uHotCol, 0.55 + 0.45 * band + uPulse * 0.20);',
-
-  '  float a = clamp(core * (0.62 + 0.34 * band), 0.0, 1.0) * uGain;',
-  '  gl_FragColor = vec4(col, a);',
+  /* Flat fill. An infographic conduit is a solid stroke of colour with a
+     hard edge, so there is no view-dependent shading at all: uTint picks
+     the leg colour (cool injection / hot production) and the travelling
+     band only modulates it slightly to show flow direction. */
+  '  vec3 col = mix(uTint, uTint * 1.22, band);',
+  '  col = mix(col, uHotCol, uPulse * 0.25);',
+  '  gl_FragColor = vec4(col, uGain);',
   '}'
 ].join('\n');

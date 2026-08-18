@@ -26,8 +26,8 @@ function buildCampus(rng) {
     { x:  3.30, w: 0.86, d: 0.54, h: 0.17 }
   ];
 
-  var shell = new THREE.MeshBasicMaterial({ color: 0x101418 });
-  var trim  = new THREE.MeshBasicMaterial({ color: 0x3a4048 });
+  var shell = new THREE.MeshBasicMaterial({ color: 0x2b3138 });
+  var trim  = new THREE.MeshBasicMaterial({ color: 0x59626d });
   var i, j;
 
   for (i = 0; i < halls.length; i++) {
@@ -62,13 +62,20 @@ function buildCampus(rng) {
 function buildDatum() {
   var group = new THREE.Group();
 
-  /* The ground line is the heaviest rule in the drawing: on a printed
-     section the datum is what every depth is measured from. */
-  var line = new THREE.Mesh(
-    new THREE.PlaneGeometry(15.0, 0.020),
-    new THREE.MeshBasicMaterial({ color: 0x101418, transparent: true, opacity: 0.72 })
+  /* Sky above the datum: a flat pale band, as in a published section. */
+  var sky = new THREE.Mesh(
+    new THREE.PlaneGeometry(15.0, 3.4),
+    new THREE.MeshBasicMaterial({ color: 0xdfe6ea })
   );
-  line.position.set(0, DATUM, 0.02);
+  sky.position.set(0, DATUM + 1.7, -0.6);
+  group.add(sky);
+
+  /* The ground rule itself. */
+  var line = new THREE.Mesh(
+    new THREE.PlaneGeometry(15.0, 0.022),
+    new THREE.MeshBasicMaterial({ color: 0x161b20, transparent: true, opacity: 0.85 })
+  );
+  line.position.set(0, DATUM, 0.03);
   group.add(line);
 
   return group;
