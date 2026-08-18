@@ -257,6 +257,7 @@ h3{
   background:var(--paper-2);
   aspect-ratio:4 / 3;
 }
+.plate-media picture{ display:block; width:100%; height:100%; }
 .plate-media img{
   width:100%; height:100%; object-fit:cover; display:block;
   filter:saturate(.88) contrast(1.02);
@@ -280,6 +281,7 @@ h3{
   aspect-ratio:16 / 9; overflow:hidden;
   background:var(--paper-2);
 }
+.card-media picture{ display:block; width:100%; height:100%; }
 .card-media img{
   width:100%; height:100%; object-fit:cover; display:block;
   filter:saturate(.88) contrast(1.02);
@@ -291,8 +293,10 @@ h3{
   color:var(--paper);
   padding-block:clamp(88px,10vw,150px);
 }
-.band-photo img{
-  position:absolute; inset:0; z-index:-2;
+.band-photo > picture{
+  position:absolute; inset:0; z-index:-2; display:block;
+}
+.band-photo > picture img{
   width:100%; height:100%; object-fit:cover;
 }
 .band-photo::after{
