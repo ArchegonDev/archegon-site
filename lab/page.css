@@ -110,6 +110,12 @@ h3{
 .hero-copy .eyebrow{ margin-bottom:24px; }
 .hero-copy h1{ margin-bottom:24px; }
 .hero-copy .lede{ max-width:44ch; }
+/* the ask, set apart from the proposition above it */
+.hero-ask{
+  max-width:42ch; margin-top:22px; padding-left:16px;
+  border-left:2px solid var(--ember);
+  font-size:15.5px; line-height:1.6; color:var(--muted);
+}
 
 .hero-actions{ display:flex; gap:14px; margin-top:38px; flex-wrap:wrap; }
 .btn{
@@ -279,6 +285,30 @@ h3{
 }
 .founder p{ font-size:15px; }
 @media (max-width:820px){ .about-layout{ grid-template-columns:1fr; } }
+
+/* what the founder is explicitly asking partners to take on */
+.roles{ margin-top:clamp(40px,4.4vw,64px); }
+.roles-head{
+  font-size:11px; font-weight:600;
+  letter-spacing:.19em; text-transform:uppercase;
+  color:var(--muted);
+  padding-bottom:12px; border-bottom:1px solid var(--line);
+}
+.roles ul{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+}
+.roles li{
+  padding:22px 26px 24px 0;
+  border-bottom:1px solid var(--line);
+  font-size:14.5px; line-height:1.55; color:var(--body);
+}
+.roles li b{
+  display:block; margin-bottom:7px;
+  font-size:15px; font-weight:500; color:var(--ink);
+}
+@media (max-width:900px){ .roles ul{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:560px){ .roles ul{ grid-template-columns:1fr; } }
 
 /* ── contact ─────────────────────────────────────────────────────────── */
 .contact-panel{
