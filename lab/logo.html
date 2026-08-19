@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archegon — logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5f1ea; --ink:#101418; --body:#333; --muted:#6b645b;
+    --line:#ddd4c6; --ember:#d66b35;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; padding:56px clamp(20px,5vw,72px) 120px;
+    background:var(--paper); color:var(--body);
+    font:300 17px/1.6 Inter,ui-sans-serif,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1{ font-size:44px; font-weight:300; letter-spacing:-.012em; color:var(--ink); margin:0 0 10px; }
+  .sub{ color:var(--muted); font-size:15px; margin:0 0 8px; max-width:70ch; }
+  h2{
+    font-size:11px; font-weight:600; letter-spacing:.19em; text-transform:uppercase;
+    color:var(--muted); margin:56px 0 18px; padding-bottom:9px;
+    border-bottom:1px solid var(--line);
+  }
+  .row{ display:flex; align-items:center; gap:34px; flex-wrap:wrap; }
+  .cell{ background:#fff; border:1px solid var(--line); padding:20px 24px;
+         display:flex; align-items:center; justify-content:center; }
+  .cell.dark{ background:var(--ink); }
+  .cap{ font-size:12px; color:var(--muted); margin:8px 0 0; letter-spacing:.02em; }
+  .stack{ display:flex; flex-direction:column; }
+  .note{ font-size:14px; color:var(--muted); max-width:78ch; margin:14px 0 0; }
+  .note b{ color:var(--ink); font-weight:500; }
+
+  /* lockup: mark + wordmark, matching site header type */
+  .lock{ display:flex; align-items:center; gap:11px; }
+  .lock svg{ display:block; }
+  .lock span{
+    font-size:20px; font-weight:500; letter-spacing:.03em; color:var(--ink);
+    line-height:1;
+  }
+  .dark .lock span{ color:#f5f1ea; }
+  .dark .ink{ stroke:#f5f1ea; }
+
+  .hdr{
+    display:flex; align-items:center; gap:32px;
+    padding:20px 28px; background:rgba(245,241,234,.9);
+    border:1px solid var(--line); backdrop-filter:blur(14px);
+  }
+  .hdr nav{ display:flex; gap:26px; margin-left:auto;
+            font-size:13px; font-weight:500; letter-spacing:.02em; color:var(--ink); }
+</style>
+</head>
+<body>
+
+<h1>Archegon logo</h1>
+<p class="sub">
+  The mark you have works, but it fights the site. Below: what is wrong with it,
+  then three replacements built from the same geometry as the hero diagram.
+</p>
+
+<h2>1 — What you have now</h2>
+<div class="row">
+  <div class="stack">
+    <div class="cell"><img src="../assets/logo.svg" width="180" alt="Archegon"></div>
+    <p class="cap">on paper</p>
+  </div>
+  <div class="stack">
+    <div class="cell dark"><img src="../assets/logo.svg" width="180" alt="Archegon"></div>
+    <p class="cap">on ink — grey blob shows</p>
+  </div>
+  <div class="stack">
+    <div class="cell"><img src="../assets/logo.svg" width="88" alt="Archegon"></div>
+    <p class="cap">88px — script collapses</p>
+  </div>
+  <div class="stack">
+    <div class="cell"><img src="../assets/favicon.svg" width="32" height="32" alt=""></div>
+    <p class="cap">favicon 32px</p>
+  </div>
+</div>
+<p class="note">
+  <b>Four problems.</b>
+  <br>(a) The wordmark is live <code>&lt;text&gt;</code> set in
+  <i>Snell Roundhand, Apple Chancery, Brush Script MT, Segoe Script, cursive</i> —
+  so it renders as a different typeface on Mac, Windows and Android. Your logo is
+  not a fixed shape. It must be converted to outlines.
+  <br>(b) The blue is <code>#1b54a8</code>. The site is ember <code>#d66b35</code>
+  on ink. Nothing on the page shares that hue.
+  <br>(c) The grey fill <code>#e6e6e6</code> is invisible on paper and an obvious
+  patch on dark grounds.
+  <br>(d) A copperplate script reads luxury-brand, not deep drilling. Fervo's
+  credibility comes from looking engineered.
+</p>
+
+<h2>2 — Replacements, drawn from the hero diagram</h2>
+<p class="sub" style="margin-bottom:22px">
+  Each is two colours, one stroke weight, no fills, no type dependency.
+</p>
+<div class="row">
+
+  <div class="stack">
+    <div class="cell"><img src="marks/mark-a.svg" width="72" height="72" alt="Mark A"></div>
+    <p class="cap"><b>A</b> — the doublet</p>
+  </div>
+
+  <div class="stack">
+    <div class="cell"><img src="marks/mark-b.svg" width="72" height="72" alt="Mark B"></div>
+    <p class="cap"><b>B</b> — implied A</p>
+  </div>
+
+  <div class="stack">
+    <div class="cell"><img src="marks/mark-c.svg" width="72" height="72" alt="Mark C"></div>
+    <p class="cap"><b>C</b> — closed loop</p>
+  </div>
+
+</div>
+<p class="note">
+  <b>A</b> is the injection/production doublet from your own hero figure: down,
+  through the lateral, back up. It says exactly what the company does.
+  <b>B</b> hides an <i>A</i> in the same two wells. <b>C</b> is the most generic
+  and the most durable at 16px.
+</p>
+
+<h2>3 — Lockups at header size</h2>
+<div class="row">
+
+  <div class="stack">
+    <div class="cell">
+      <span class="lock">
+        <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M14 8 V30 Q14 42 26 42 H38 Q50 42 50 30 V8" fill="none"
+                stroke="#d66b35" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="ink" d="M22 53 H42" fill="none" stroke="#101418"
+                stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span>Archegon</span>
+      </span>
+    </div>
+    <p class="cap">A · paper</p>
+  </div>
+
+  <div class="stack">
+    <div class="cell dark">
+      <span class="lock">
+        <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M14 8 V30 Q14 42 26 42 H38 Q50 42 50 30 V8" fill="none"
+                stroke="#d66b35" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="ink" d="M22 53 H42" fill="none" stroke="#101418"
+                stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span>Archegon</span>
+      </span>
+    </div>
+    <p class="cap">A · ink</p>
+  </div>
+
+  <div class="stack">
+    <div class="cell">
+      <span class="lock">
+        <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <path class="ink" d="M10 54 L32 10 L54 54" fill="none" stroke="#101418"
+                stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 38 H44" fill="none" stroke="#d66b35"
+                stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <span>Archegon</span>
+      </span>
+    </div>
+    <p class="cap">B · paper</p>
+  </div>
+
+  <div class="stack">
+    <div class="cell">
+      <span class="lock">
+        <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
+          <rect class="ink" x="12" y="12" width="40" height="40" rx="11"
+                fill="none" stroke="#101418" stroke-width="5.5"/>
+          <path d="M32 12 V32 H52" fill="none" stroke="#d66b35"
+                stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Archegon</span>
+      </span>
+    </div>
+    <p class="cap">C · paper</p>
+  </div>
+
+</div>
+
+<h2>4 — In the real header</h2>
+<div class="hdr">
+  <span class="lock">
+    <svg width="24" height="24" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M14 8 V30 Q14 42 26 42 H38 Q50 42 50 30 V8" fill="none"
+            stroke="#d66b35" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22 53 H42" fill="none" stroke="#101418" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+    <span style="font-size:17px">Archegon</span>
+  </span>
+  <nav>
+    <a>Thesis</a><a>Projects</a><a>Opportunity</a><a>Research</a><a>Contact</a>
+  </nav>
+</div>
+<p class="note">
+  Compare with the current header, which uses a plain ember dot. The doublet
+  costs the same space and carries the thesis.
+</p>
+
+<h2>5 — Small-size survival</h2>
+<div class="row">
+  <div class="stack">
+    <div class="cell"><img src="marks/mark-a.svg" width="16" height="16" alt=""></div>
+    <p class="cap">A · 16px</p>
+  </div>
+  <div class="stack">
+    <div class="cell"><img src="marks/mark-b.svg" width="16" height="16" alt=""></div>
+    <p class="cap">B · 16px</p>
+  </div>
+  <div class="stack">
+    <div class="cell"><img src="marks/mark-c.svg" width="16" height="16" alt=""></div>
+    <p class="cap">C · 16px</p>
+  </div>
+  <div class="stack">
+    <div class="cell"><img src="../assets/favicon.svg" width="16" height="16" alt=""></div>
+    <p class="cap">current · 16px</p>
+  </div>
+</div>
+
+</body>
+</html>

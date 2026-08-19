@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Archegon">
+  <!-- Implied A: two wells converging over a lateral -->
+  <path d="M10 54 L32 10 L54 54" fill="none" stroke="#101418" stroke-width="5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 38 H44" fill="none" stroke="#d66b35" stroke-width="5" stroke-linecap="round"/>
+</svg>

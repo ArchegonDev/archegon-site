@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Archegon">
+  <!-- Closed loop, squared: continuous circulation -->
+  <rect x="12" y="12" width="40" height="40" rx="11"
+        fill="none" stroke="#101418" stroke-width="4.5"/>
+  <path d="M32 12 V32 H52" fill="none" stroke="#d66b35" stroke-width="4.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
