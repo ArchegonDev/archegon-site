@@ -1,497 +1,540 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Archegon - Geothermal-Powered Data Centres | Firm Clean Power for AI</title>
-    <meta
-      name="description"
-      content="Archegon develops geothermal-powered data centres - pairing 24/7 firm clean power with AI compute. Two flagship projects in New Zealand and Australia."
-    >
-    <meta name="theme-color" content="#101418">
-    <meta property="og:title" content="Archegon - Geothermal-Powered Data Centres">
-    <meta
-      property="og:description"
-      content="Bringing compute to the heat: firm clean power for the age of intelligence."
-    >
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.archegon.com/">
-    <meta property="og:image" content="https://www.archegon.com/assets/og-card.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://www.archegon.com/">
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">
-    <script defer data-domain="archegon.com" src="https://plausible.io/js/script.js"></script>
-  </head>
-  <body>
-    <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="Archegon home" data-analytics-event="Nav: Home">
-        <img class="brand-logo" src="assets/logo.svg?v=4" alt="Archegon" width="334" height="102">
-      </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#thesis" data-analytics-event="Nav: Thesis">Thesis</a>
-        <a href="#projects" data-analytics-event="Nav: Projects">Projects</a>
-        <a href="#opportunity" data-analytics-event="Nav: Opportunity">Opportunity</a>
-        <a href="#research" data-analytics-event="Nav: Research">Research</a>
-        <a href="evidence/" data-analytics-event="Nav: Evidence">Evidence</a>
-        <a href="#about" data-analytics-event="Nav: About">About</a>
-        <a href="#contact" data-analytics-event="Nav: Contact">Contact</a>
-      </nav>
-      <a class="header-cta" href="#contact" data-analytics-event="CTA: Header register interest">
-        Register interest
-      </a>
-    </header>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archegon - Geothermal-Powered Data Centres | Firm Clean Power for AI</title>
+<meta name="description" content="Archegon develops geothermal-powered data centres - pairing 24/7 firm clean power with AI compute. Two candidate routes in New Zealand and Australia.">
+<meta name="theme-color" content="#101418">
+<meta property="og:title" content="Archegon - Geothermal-Powered Data Centres">
+<meta property="og:description" content="Bringing compute to the heat: firm clean power for the age of intelligence.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.archegon.com/">
+<meta property="og:image" content="https://www.archegon.com/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.archegon.com/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="figure.css">
+<script defer data-domain="archegon.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
 
-    <main id="top">
-      <section class="hero section-band" aria-labelledby="hero-title">
-        <img
-          class="hero-bg"
-          src="assets/visual-data-center.jpg"
-          alt=""
-          width="1080"
-          height="809"
-          decoding="async"
-          fetchpriority="high"
-          aria-hidden="true"
-        >
-        <div class="heat-map" aria-hidden="true">
-          <span class="heat-core"></span>
-          <span class="compute-node node-a">Firm power</span>
-          <span class="compute-node node-b">AI inference</span>
-          <span class="compute-node node-c">Behind the meter</span>
-        </div>
-        <div class="hero-copy">
-          <p class="eyebrow">Firm clean power x AI compute</p>
-          <h1 id="hero-title">Bringing compute to the heat</h1>
-          <p class="hero-lede">
-            Archegon develops geothermal-powered data centres - pairing 24/7 firm clean power
-            with AI inference, where the grid cannot reach and intermittent renewables cannot follow.<sup><a class="cite" href="evidence/#source-techcrunch-rhodium" title="Rhodium analysis via TechCrunch: geothermal, behind-the-meter power, and data centres">1</a></sup>
-          </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#thesis" data-analytics-event="CTA: See thesis">
-              See the thesis
-            </a>
-            <a class="button secondary" href="#contact" data-analytics-event="CTA: Hero get in touch">
-              Get in touch
-            </a>
-          </div>
-        </div>
-      </section>
+<header class="site-header" data-header>
+  <a class="wordmark" href="#top">Archegon<i></i></a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="#thesis">Thesis</a>
+    <a href="#projects">Projects</a>
+    <a href="#opportunity">Opportunity</a>
+    <a href="#research">Research</a>
+    <a href="notes/">Notes</a>
+    <a href="evidence/">Evidence</a>
+    <a href="#about">About</a>
+  </nav>
+  <a class="header-cta" href="#contact" data-analytics-event="CTA: Header register interest">Register interest</a>
+</header>
 
-      <section class="signal-strip" aria-label="Core thesis signals">
-        <div>
-          <strong>Power, not silicon</strong>
-          <span>AI growth is constrained by firm electricity.<sup><a class="cite" href="evidence/#source-epoch-tco" title="Epoch AI: total cost of ownership of a 1 GW AI data center">2</a></sup></span>
-        </div>
-        <div>
-          <strong>~90% capacity factor</strong>
-          <span>Geothermal naturally matches a 24/7 load.<sup><a class="cite" href="evidence/#source-techcrunch-rhodium" title="Rhodium analysis via TechCrunch: geothermal at data-centre scale">1</a></sup></span>
-        </div>
-        <div>
-          <strong>Compute to heat</strong>
-          <span>Co-location can skip the grid queue.<sup><a class="cite" href="evidence/#source-archdesk-grid" title="Archdesk: data-centre construction benchmarks and grid-queue context">3</a></sup></span>
-        </div>
-      </section>
+<main id="top">
 
-      <section class="section-band quiet-band" id="thesis" aria-labelledby="thesis-title">
-        <div class="section-heading">
-          <p class="eyebrow">The thesis</p>
-          <h2 id="thesis-title">The grid is full, and the queue is broken</h2>
-        </div>
-        <div class="split-copy">
-          <p>
-            New large grid connections face waits measured in years. Whoever controls firm power
-            now controls the AI buildout. Inference is a steady, 24/7 load, and it pairs naturally
-            with geothermal's high capacity factor.<sup><a class="cite" href="evidence/#source-archdesk-grid" title="Archdesk: grid-queue context for data-centre delivery">3</a></sup><sup><a class="cite" href="evidence/#source-latitude-rhodium" title="Latitude Media summary of Rhodium Group geothermal analysis">4</a></sup>
-          </p>
-          <p>
-            Some of the hottest rock on Earth sits unused - not because the technology fails, but
-            because nobody put the demand next to it. Archegon brings the data centre to the heat,
-            off-grid where possible, and behind the meter where it matters.<sup><a class="cite" href="evidence/#source-arena-cooper-egs" title="ARENA: Cooper Basin enhanced geothermal systems project">5</a></sup><sup><a class="cite" href="evidence/#source-data-center-frontier-btm" title="Data Center Frontier: geothermal behind-the-meter power for data centres">6</a></sup>
-          </p>
-        </div>
-        <div class="proof-grid" aria-label="Third-party proof points">
-          <article class="proof-card">
-            <p class="post-meta">Proof point</p>
-            <h3>EGS is no longer theoretical</h3>
-            <p>
-              Google and Fervo's Project Red brought an enhanced geothermal pilot into operation
-              in Nevada, showing a commercial pathway for 24/7 carbon-free power tied to data-centre
-              demand. Fervo has since published operating data and raised project finance for
-              larger-scale deployment.<sup><a class="cite" href="evidence/#source-fervo-project-red" title="Fervo Energy: Project Red technology breakthrough">7</a></sup><sup><a class="cite" href="evidence/#source-fervo-production-data" title="Fervo Energy: two years of Project Red production data">8</a></sup>
-            </p>
-          </article>
-          <article class="proof-card">
-            <p class="post-meta">Australian inversion</p>
-            <h3>Habanero proved the problem Archegon inverts</h3>
-            <p>
-              ARENA-backed Cooper Basin work demonstrated very hot granite and an EGS pathway, but
-              the remote resource struggled commercially because transmission, flow-rate, capex,
-              and offtake economics were weak. Co-located compute changes the demand side of that
-              equation.<sup><a class="cite" href="evidence/#source-arena-habanero-fdp" title="ARENA: Habanero Geothermal Project Field Development Plan">9</a></sup><sup><a class="cite" href="evidence/#source-ventia-cooper-remediation" title="Ventia: Cooper Basin geothermal remediation project">10</a></sup>
-            </p>
-          </article>
-        </div>
-        <ol class="logic-chain" aria-label="Archegon logic chain">
-          <li>Power is the constraint</li>
-          <li>Geothermal is firm</li>
-          <li>Co-locate compute</li>
-          <li>Skip the grid queue</li>
-          <li>Control clean capacity</li>
-          <li>AI in a geographically safe part of the world</li>
-        </ol>
-        <p class="source-note">
-          Capacity-factor and market statements are indicative and drawn from public benchmarks.
-          They are not financial projections.
-        </p>
-      </section>
-
-      <section class="section-band" id="projects" aria-labelledby="projects-title">
-        <div class="section-heading with-action">
-          <div>
-            <p class="eyebrow">The projects</p>
-            <h2 id="projects-title">Two routes, two risk profiles</h2>
-          </div>
-          <a class="button secondary" href="#contact" data-analytics-event="CTA: Register interest">
-            Register interest
-          </a>
-        </div>
-        <div class="project-photos" aria-label="Project visual context">
-          <figure class="project-photo">
-            <img
-              src="assets/visual-wairakei-geothermal.jpg"
-              alt="Wairakei geothermal power plant infrastructure in New Zealand"
-              width="1600"
-              height="1200"
-              loading="lazy"
-              decoding="async"
-            >
-            <figcaption>
-              Illustrative: Wairakei geothermal infrastructure in the Taupo volcanic zone;
-              not an Archegon site or partner asset.
-            </figcaption>
-          </figure>
-          <figure class="project-photo dark-caption">
-            <img
-              src="assets/visual-cooper-creek.jpg"
-              alt="Cooper Creek landscape in South Australia"
-              width="1800"
-              height="1350"
-              loading="lazy"
-              decoding="async"
-            >
-            <figcaption>
-              Illustrative: Cooper Creek landscape context for remote Australian infrastructure;
-              not the Habanero plant.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="project-grid">
-          <article class="project-card">
-            <p class="post-meta">New Zealand - The Build</p>
-            <h3>Proven geothermal, grid-adjacent AI campus</h3>
-            <p>
-              A preliminary 100 MW Phase 1 concept anchored by firm geothermal power. Candidate
-              routes include Central North Island geothermal proximity and colder-climate
-              Southland infrastructure paths, subject to site, power, fibre, consent, and
-              partner diligence.<sup><a class="cite" href="evidence/#source-contact-microsoft-te-huka" title="Contact Energy: Microsoft renewable energy agreement and Te Huka 3">11</a></sup><sup><a class="cite" href="evidence/#source-datagrid-southland" title="Datagrid: Southland data-centre campus and Tasman Ring cable">12</a></sup>
-            </p>
-            <a
-              class="read-link"
-              href="assets/archegon-new-zealand-project-brief.pdf"
-              data-analytics-event="Download: New Zealand project brief"
-            >
-              Download New Zealand summary
-            </a>
-          </article>
-          <article class="project-card dark">
-            <p class="post-meta">Australia - The Bet</p>
-            <h3>Off-grid Cooper Basin compute hub</h3>
-            <p>
-              A frontier Cooper Basin route combining enhanced geothermal systems, solar, storage,
-              dry cooling, and resilient backhaul. The central diligence question is whether the
-              subsurface, water, cooling, and customer gates can be de-risked before any larger
-              campus build.<sup><a class="cite" href="evidence/#source-arena-cooper-egs" title="ARENA: Cooper Basin EGS project">5</a></sup><sup><a class="cite" href="evidence/#source-skycool-homepage" title="SkyCool Systems: radiative cooling technology overview">13</a></sup>
-            </p>
-            <a
-              class="read-link"
-              href="assets/archegon-australia-project-brief.pdf"
-              data-analytics-event="Download: Australia project brief"
-            >
-              Download Australia summary
-            </a>
-          </article>
-        </div>
-        <div class="compare-table" role="table" aria-label="New Zealand and Australia project comparison">
-          <div role="row">
-            <span role="columnheader">Route</span>
-            <span role="columnheader">Risk profile</span>
-            <span role="columnheader">Power model</span>
-            <span role="columnheader">Status</span>
-          </div>
-          <div role="row">
-            <span role="cell">New Zealand</span>
-            <span role="cell">Lower-risk build path</span>
-            <span role="cell">Grid-adjacent geothermal</span>
-            <span role="cell">Public summary; seeking qualified conversations</span>
-          </div>
-          <div role="row">
-            <span role="cell">Australia</span>
-            <span role="cell">Frontier infrastructure bet</span>
-            <span role="cell">Off-grid hot-dry-rock</span>
-            <span role="cell">Public summary; pilot diligence required</span>
-          </div>
-        </div>
-        <p class="disclaimer inline">
-          Project summaries are generalised from source business plans. Detailed financial models,
-          capital stacks, and performance assumptions are not published here and belong only in a
-          qualified diligence process. Illustrative only; built from public benchmarks; subject
-          to due diligence.
-        </p>
-      </section>
-
-      <section class="section-band method-band" id="opportunity" aria-labelledby="opportunity-title">
-        <div class="section-heading">
-          <p class="eyebrow">The opportunity</p>
-          <h2 id="opportunity-title">Firm power is becoming the scarce input to AI</h2>
-        </div>
-        <div class="opportunity-grid">
-          <article>
-            <h3>Market pull</h3>
-            <p>
-              AI compute demand is rising into a power-constrained grid. Speed-to-power is now
-              a strategic advantage for hyperscalers, AI labs, and infrastructure investors.<sup><a class="cite" href="evidence/#source-epoch-tco" title="Epoch AI: AI data-centre cost and power assumptions">2</a></sup><sup><a class="cite" href="evidence/#source-archdesk-grid" title="Archdesk: grid-queue context and data-centre delivery constraints">3</a></sup>
-            </p>
-          </article>
-          <article>
-            <h3>Economics</h3>
-            <p>
-              The model is under active diligence: capex per MW, contracted revenue, cooling,
-              fibre, water, and power-stack ownership all matter. No return figures are offered
-              on this website.
-            </p>
-          </article>
-          <article>
-            <h3>Credibility</h3>
-            <p>
-              Every figure used here is benchmark-led and preliminary. The detailed assumptions
-              belong in a controlled diligence review with appropriately qualified parties.
-            </p>
-          </article>
-        </div>
-        <figure class="opportunity-photo">
-          <img
-            src="assets/visual-solar-sheep.jpg"
-            alt="Sheep grazing below solar panels in an agrivoltaic field"
-            width="1024"
-            height="682"
-            loading="lazy"
-            decoding="async"
-          >
-          <figcaption>
-            Illustrative co-benefit analogue: agrivoltaics can pair energy infrastructure with
-            managed land use; this is not a Cooper Basin image.
-          </figcaption>
-        </figure>
-        <p class="disclaimer reverse">
-          Nothing on this website constitutes an offer or invitation to invest, financial advice,
-          or a financial promotion. All figures are illustrative and subject to verification.
-          Any investment discussion will occur separately with appropriately qualified parties.
-        </p>
-      </section>
-
-      <section class="section-band" id="about" aria-labelledby="about-title">
-        <div class="section-heading">
-          <p class="eyebrow">About Archegon</p>
-          <h2 id="about-title">A founder-led research effort, built to become an infrastructure venture</h2>
-        </div>
-        <div class="about-layout">
-          <div class="founder-copy">
-            <p>
-              Archegon began with a stubborn question: if power is the real limit on AI, why are
-              we shipping electricity across continents instead of putting the computers where
-              the clean energy already is?
-            </p>
-            <p>
-              That question turned into research - into geothermal, data-centre economics,
-              water, cooling, and the places on Earth where hot rock and cheap land meet.
-              What started as a thought experiment now has numbers behind it, and the numbers
-              are interesting enough to share.
-            </p>
-            <p>
-              Archegon is early. It is currently a founder-led research effort seeking the
-              people who build infrastructure: co-founders, capital, energy partners, AI partners,
-              advisors, and operators.
-            </p>
-          </div>
-          <aside class="founder-card">
-            <p class="post-meta">Founder</p>
-            <h3>Anthony Lui</h3>
-            <p>Australia-based founder developing the Archegon thesis.</p>
-            <a class="read-link" href="#contact" data-analytics-event="CTA: Founder contact">
-              Get in touch
-            </a>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section-band quiet-band" id="research" aria-labelledby="research-title">
-        <div class="section-heading with-action">
-          <div>
-            <p class="eyebrow">Research and consulting</p>
-            <h2 id="research-title">Infrastructure thesis, agentic AI research, and practical advisory work</h2>
-          </div>
-          <div class="button-row">
-            <a class="button secondary" href="blog/" data-analytics-event="CTA: Read research notes">
-              Read the research notes
-            </a>
-            <a class="button secondary" href="evidence/" data-analytics-event="CTA: View evidence base">
-              View evidence base
-            </a>
-          </div>
-        </div>
-        <div class="research-grid">
-          <article class="research-card featured">
-            <p class="post-meta">Geothermal compute</p>
-            <h3>Power is the AI bottleneck</h3>
-            <p>
-              Notes on firm clean power, grid constraints, geothermal siting, and why AI compute
-              may need to move closer to the energy resource.
-            </p>
-            <a class="read-link" href="blog/#power-constraint" data-analytics-event="CTA: Read power note">
-              Read note
-            </a>
-          </article>
-          <article class="research-card">
-            <p class="post-meta">Agentic consulting</p>
-            <h3>Reliable AI agents for operational work</h3>
-            <p>
-              Archegon also keeps a research and advisory thread on agentic AI: workflow design,
-              evaluation, handoffs, and governance for practical deployment.
-            </p>
-            <a class="read-link" href="blog/#automation-boundary" data-analytics-event="CTA: Read agentic note">
-              Read note
-            </a>
-          </article>
-          <article class="research-card">
-            <p class="post-meta">Working stage</p>
-            <h3>Early, serious, and open to qualified conversations</h3>
-            <p>
-              The site is built to invite interest from investors, partners, technical collaborators,
-              advisors, press, and teams with agentic AI workflow problems.
-            </p>
-            <a class="read-link" href="#contact" data-analytics-event="CTA: Research contact">
-              Get in touch
-            </a>
-          </article>
-        </div>
-      </section>
-
-      <section class="section-band contact-band" id="contact" aria-labelledby="contact-title">
-        <div class="contact-panel">
-          <div>
-            <p class="eyebrow">Get involved</p>
-            <h2 id="contact-title">Register interest, partner, build, advise, or ask a question</h2>
-            <p>
-              Choose the path that fits you. The form opens a pre-filled email to
-              hello@archegon.com and does not store your submission on this website.
-            </p>
-          </div>
-          <a class="button primary" href="mailto:hello@archegon.com?subject=Archegon%20interest" data-analytics-event="CTA: Direct email">
-            Email Archegon
-          </a>
-        </div>
-
-        <form class="lead-form" id="lead-form">
-          <div class="form-segments" aria-label="I am here to">
-            <label><input type="radio" name="intent" value="Register investor interest" checked> Investor</label>
-            <label><input type="radio" name="intent" value="Partnership enquiry"> Partner</label>
-            <label><input type="radio" name="intent" value="Technical co-founder or collaborator"> Build</label>
-            <label><input type="radio" name="intent" value="Agentic AI consulting enquiry"> Consulting</label>
-            <label><input type="radio" name="intent" value="Advisor or operator"> Advise</label>
-            <label><input type="radio" name="intent" value="Press or policy enquiry"> Press</label>
-          </div>
-          <div class="form-grid">
-            <label>
-              Name
-              <input type="text" name="name" autocomplete="name" required>
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" autocomplete="email" required>
-            </label>
-            <label>
-              Organisation <span>(optional)</span>
-              <input type="text" name="organisation" autocomplete="organization">
-            </label>
-            <label>
-              I am a
-              <select name="audience" required>
-                <option value="Investor">Investor</option>
-                <option value="Strategic partner">Strategic partner</option>
-                <option value="Technical collaborator">Technical collaborator</option>
-                <option value="Agentic AI consulting prospect">Agentic AI consulting prospect</option>
-                <option value="Advisor">Advisor</option>
-                <option value="Press">Press</option>
-                <option value="Other">Other</option>
-              </select>
-            </label>
-          </div>
-          <label>
-            Message
-            <textarea name="message" rows="5" required></textarea>
-          </label>
-          <label class="checkbox-row">
-            <input type="checkbox" name="consent" required>
-            <span>I consent to Archegon using this information to respond to my enquiry.</span>
-          </label>
-          <label class="checkbox-row">
-            <input type="checkbox" name="newsletter">
-            <span>I would also like to follow Archegon's progress by email.</span>
-          </label>
-          <p class="privacy-note">
-            Privacy note: this static site collects only the fields above. Submitting opens your
-            email client so you can review the message before sending. Archegon will use your
-            details only to respond to your enquiry or send updates if you opt in.
-          </p>
-          <p class="disclaimer inline">
-            Nothing on this website constitutes an offer or invitation to invest, financial advice,
-            or a financial promotion. All figures are illustrative and subject to verification.
-          </p>
-          <button class="button primary" type="submit" data-analytics-event="Form: Submit lead">
-            Register interest
-          </button>
-          <p class="form-status" data-form-status aria-live="polite"></p>
-        </form>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div>
-        <p>Archegon</p>
-        <p>Bringing compute to the heat.</p>
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="evidence/">Evidence</a>
-          <a href="blog/">Research notes</a>
-        </nav>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Firm clean power &times; AI compute</p>
+      <h1>Bringing compute to the heat</h1>
+      <p class="lede">
+        AI is running out of power before it runs out of chips. Archegon builds
+        data centres on top of geothermal heat &mdash; firm, 24/7, behind the
+        meter, and clear of a grid queue measured in years.<a class="cite" href="evidence/#source-techcrunch-rhodium" title="Rhodium analysis via TechCrunch: geothermal, behind-the-meter power, and data centres">1</a>
+      </p>
+      <p class="hero-ask">
+        The thesis is written and the numbers are on the table. What it needs now
+        are the people who have done this before.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#contact" data-analytics-event="CTA: Hero start conversation">Start a conversation</a>
+        <a class="btn secondary" href="#thesis">Read the thesis</a>
       </div>
-      <p class="footer-disclaimer">
+    </div>
+
+    <figure class="hero-figure">
+      <div class="scene" id="scene" data-figure="figure.svg"></div>
+      <ol class="figure-key">
+        <li><span>1</span> Horizontal laterals drilled into hard, non-permeable rock</li>
+        <li><span>2</span> Engineered fractures connect the well pair</li>
+        <li><span>3</span> Hot brine drives a closed-loop ORC turbine</li>
+        <li><span>4</span> Firm power serves the co-located campus</li>
+      </ol>
+      <figcaption class="figure-caption">
+        <span><b>Fig. 1</b> &nbsp;Enhanced geothermal system, schematic section</span>
+        <span>Illustrative &middot; not to scale</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="signals">
+    <div>
+      <strong>Power, not silicon</strong>
+      <span>The binding constraint on AI is firm electricity.<a class="cite" href="evidence/#source-epoch-tco" title="Epoch AI: total cost of ownership of a 1 GW AI data center">2</a></span>
+    </div>
+    <div>
+      <strong>~90% capacity factor</strong>
+      <span>Geothermal runs when the wind does not.<a class="cite" href="evidence/#source-techcrunch-rhodium" title="Rhodium analysis via TechCrunch: geothermal at data-centre scale">1</a></span>
+    </div>
+    <div>
+      <strong>Years, not decades</strong>
+      <span>Co-location sidesteps the interconnection queue.<a class="cite" href="evidence/#source-archdesk-grid" title="Archdesk: data-centre construction benchmarks and grid-queue context">3</a></span>
+    </div>
+  </section>
+
+  <section class="band" id="thesis">
+    <div class="band-head">
+      <p class="eyebrow">The thesis</p>
+      <h2>The grid is full, and the queue is broken</h2>
+    </div>
+    <div class="two-col">
+      <p>
+        A new large grid connection takes years. That queue, not chip supply, is
+        what now sets the pace of the AI buildout &mdash; and whoever controls firm
+        power controls the pace. Inference is a flat, around-the-clock load, which
+        is exactly the shape geothermal delivers best.<a class="cite" href="evidence/#source-archdesk-grid" title="Archdesk: grid-queue context for data-centre delivery">3</a><a class="cite" href="evidence/#source-latitude-rhodium" title="Latitude Media summary of Rhodium Group geothermal analysis">4</a>
+      </p>
+      <p>
+        Meanwhile some of the hottest rock on Earth sits idle &mdash; not because
+        the engineering failed, but because nobody put the demand next to it.
+        Transmission is the expensive part. Archegon moves the data centre to the
+        heat instead of moving the electricity to the data centre.<a class="cite" href="evidence/#source-arena-cooper-egs" title="ARENA: Cooper Basin enhanced geothermal systems project">5</a><a class="cite" href="evidence/#source-data-center-frontier-btm" title="Data Center Frontier: geothermal behind-the-meter power for data centres">6</a>
+      </p>
+    </div>
+
+    <ol class="chain">
+      <li>Power is the constraint</li>
+      <li>Geothermal is firm</li>
+      <li>Co-locate compute</li>
+      <li>Skip the grid queue</li>
+      <li>Control clean capacity</li>
+      <li>AI in a geographically safe part of the world</li>
+    </ol>
+
+    <p class="source-note">
+      Capacity-factor and market statements are indicative and drawn from public
+      benchmarks. They are not financial projections.
+    </p>
+  </section>
+
+  <section class="band tint" id="projects">
+    <div class="band-head">
+      <p class="eyebrow">The projects</p>
+      <h2>Two routes, two risk profiles</h2>
+    </div>
+    <div class="two-col">
+      <article class="card">
+        <div class="card-media">
+          <picture>
+            <source srcset="assets/visual-wairakei-geothermal.webp" type="image/webp">
+            <img src="assets/visual-wairakei-geothermal.jpg"
+                 alt="Wairakei geothermal power plant infrastructure in New Zealand"
+                 width="1280" height="960" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <p class="post-meta">New Zealand &mdash; The Build</p>
+        <h3>Proven geothermal, grid-adjacent AI campus</h3>
+        <p>
+          A preliminary 100 MW Phase 1 concept anchored by firm geothermal power.
+          Candidate routes include Central North Island geothermal proximity and
+          colder-climate Southland infrastructure paths, subject to site, power,
+          fibre, consent, and partner diligence.<a class="cite" href="evidence/#source-contact-microsoft-te-huka" title="Contact Energy: Microsoft renewable energy agreement and Te Huka 3">11</a><a class="cite" href="evidence/#source-datagrid-southland" title="Datagrid: Southland data-centre campus and Tasman Ring cable">12</a>
+        </p>
+        <a class="read-link" href="#">Download New Zealand summary</a>
+        <p class="plate-credit">
+          Illustrative: Wairakei geothermal infrastructure in the Taupo volcanic
+          zone; not an Archegon site or partner asset.
+        </p>
+      </article>
+      <article class="card">
+        <div class="card-media">
+          <picture>
+            <source srcset="assets/visual-cooper-creek.webp" type="image/webp">
+            <img src="assets/visual-cooper-creek.jpg"
+                 alt="Cooper Creek landscape in South Australia"
+                 width="1280" height="960" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <p class="post-meta">Australia &mdash; The Bet</p>
+        <h3>Off-grid Cooper Basin compute hub</h3>
+        <p>
+          A frontier Cooper Basin route combining enhanced geothermal systems,
+          solar, storage, dry cooling, and resilient backhaul. The central
+          diligence question is whether the subsurface, water, cooling, and
+          customer gates can be de-risked before any larger campus build.<a class="cite" href="evidence/#source-arena-cooper-egs" title="ARENA: Cooper Basin EGS project">5</a><a class="cite" href="evidence/#source-skycool-homepage" title="SkyCool Systems: radiative cooling technology overview">13</a>
+        </p>
+        <a class="read-link" href="#">Download Australia summary</a>
+        <p class="plate-credit">
+          Illustrative: Cooper Creek landscape context for remote Australian
+          infrastructure; not the Habanero plant.
+        </p>
+      </article>
+    </div>
+
+    <p class="source-note">
+      Project summaries are generalised from source business plans. Detailed
+      financial models, capital stacks, and performance assumptions are not
+      published here and belong only in a qualified diligence process.
+      Illustrative only; built from public benchmarks; subject to due diligence.
+    </p>
+  </section>
+
+  <section class="band band-photo" id="opportunity">
+    <picture>
+      <source srcset="assets/photo-cabling.webp" type="image/webp">
+      <img src="assets/photo-cabling.jpg"
+           alt="" aria-hidden="true" width="1024" height="768"
+           loading="lazy" decoding="async">
+    </picture>
+    <div class="band-head">
+      <p class="eyebrow">The opportunity</p>
+      <h2>Firm power is the scarce input to AI</h2>
+    </div>
+    <div class="two-col">
+      <p>
+        AI compute demand is rising into a power-constrained grid. Speed-to-power
+        is now a strategic advantage for hyperscalers, AI labs, and infrastructure
+        investors.<a class="cite" href="evidence/#source-epoch-tco" title="Epoch AI: AI data-centre cost and power assumptions">2</a><a class="cite" href="evidence/#source-archdesk-grid" title="Archdesk: grid-queue context and data-centre delivery constraints">3</a>
+      </p>
+      <p>
+        The model is under active diligence: capex per MW, contracted revenue,
+        cooling, fibre, water, and power-stack ownership all matter. No return
+        figures are offered on this website.
+      </p>
+    </div>
+    <div class="phases">
+      <div class="phase">
+        <p class="phase-yr">Year 1</p>
+        <div>
+          <h3>Resource and site definition</h3>
+          <p>
+            Subsurface review, temperature-at-depth mapping, land and consent
+            pathway, grid and fibre routing, offtake conversations.
+          </p>
+        </div>
+        <p class="phase-gate">
+          <b>Gate</b>
+          A defensible resource case and a site with a credible consent and
+          connection path, or the route is stopped.
+        </p>
+        <p class="phase-cap">Feasibility<span>Pre-drill</span></p>
+      </div>
+
+      <div class="phase">
+        <p class="phase-yr">Year 2</p>
+        <div>
+          <h3>First wells and stimulation</h3>
+          <p>
+            Drill the initial doublet, stimulate, and measure. This is where
+            subsurface uncertainty is converted into flow-rate and temperature
+            data, or is not.
+          </p>
+        </div>
+        <p class="phase-gate">
+          <b>Gate</b>
+          Measured flow and temperature sufficient to support a commercial
+          power block. The single largest technical risk in the programme.
+        </p>
+        <p class="phase-cap">Drilling<span>Capital intensive</span></p>
+      </div>
+
+      <div class="phase">
+        <p class="phase-yr">Year 3</p>
+        <div>
+          <h3>Pilot power and first compute</h3>
+          <p>
+            Commission an initial power block and a small compute hall against
+            it. Prove the closed loop end to end at modest scale.
+          </p>
+        </div>
+        <p class="phase-gate">
+          <b>Gate</b>
+          Sustained generation and a live customer load, with contracted
+          revenue rather than pilot goodwill.
+        </p>
+        <p class="phase-cap">Pilot build<span>Plant + hall</span></p>
+      </div>
+
+      <div class="phase">
+        <p class="phase-yr">Years 4&ndash;5</p>
+        <div>
+          <h3>Scale-out to Phase 1 capacity</h3>
+          <p>
+            Repeat the well pattern, expand the power block, and build out the
+            campus toward the preliminary 100 MW Phase 1 concept.
+          </p>
+        </div>
+        <p class="phase-gate">
+          <b>Gate</b>
+          Repeatable well cost and schedule. Cost per well falling with each
+          pad is what makes the programme financeable at scale.
+        </p>
+        <p class="phase-cap">Project finance<span>Debt-led</span></p>
+      </div>
+    </div>
+
+    <p class="phase-total">
+      <b>Capital profile</b>
+      <i>Equity-led through drilling; debt-led once flow is proven</i>
+    </p>
+
+    <p class="plate-note">
+      Indicative phasing only. Capital requirements, capital stack, and any
+      return figures are not published here and belong in a controlled
+      diligence process with appropriately qualified parties. Benchmarks for
+      data-centre and geothermal cost structure are set out in the
+      <a href="evidence/#source-epoch-tco">evidence base</a>.
+      Image: data centre interior, used illustratively. Nothing on this website
+      constitutes an offer or invitation to invest, financial advice, or a
+      financial promotion.
+    </p>
+  </section>
+
+  <section class="band" id="about">
+    <div class="band-head">
+      <p class="eyebrow">About Archegon</p>
+      <h2>One founder, a finished thesis, and an honest need for partners</h2>
+    </div>
+    <div class="about-layout">
+      <div class="about-copy">
+        <p>
+          Archegon began with a stubborn question: if power is the real limit on
+          AI, why are we shipping electricity across continents instead of
+          putting the computers where the clean energy already is?
+        </p>
+        <p>
+          That question became two years of work &mdash; geothermal resource,
+          data-centre economics, water, cooling, and the places on Earth where hot
+          rock and cheap land meet. It is no longer a thought experiment. There are
+          two candidate routes, a phased plan, and a published evidence base
+          anyone is welcome to attack.
+        </p>
+        <p>
+          What Archegon does not have yet is a team. I am one founder with a
+          thesis, and a thesis is not an asset until people who have drilled
+          wells, financed plants, and run halls put their hands on it. That is
+          the gap I am trying to close, and I would rather say so plainly than
+          pretend otherwise.
+        </p>
+      </div>
+      <aside class="founder">
+        <p class="post-meta">Founder</p>
+        <h3>Anthony Lui</h3>
+        <p>
+          Australia-based. Built the thesis, the models, and the evidence base
+          behind this site.
+        </p>
+        <a class="read-link" href="#contact">Get in touch</a>
+      </aside>
+    </div>
+
+    <div class="roles">
+      <p class="roles-head">Who I am looking for</p>
+      <ul>
+        <li>
+          <b>Subsurface</b>
+          Geothermal or oil-and-gas drilling experience. The wells are the risk,
+          and I will not pretend to price them alone.
+        </li>
+        <li>
+          <b>Data centre</b>
+          Someone who has delivered halls and knows what an offtake conversation
+          actually requires.
+        </li>
+        <li>
+          <b>Capital</b>
+          Early backers comfortable with resource risk, plus a route to project
+          finance once flow is proven.
+        </li>
+        <li>
+          <b>Offtake</b>
+          AI labs and operators who want firm power and are willing to talk
+          before it exists.
+        </li>
+      </ul>
+    </div>
+
+    <figure class="plate plate-wide" style="margin-top:56px">
+      <div class="plate-media">
+        <picture>
+          <source srcset="assets/photo-containment.webp" type="image/webp">
+          <img src="assets/photo-containment.jpg"
+               alt="Overhead cable containment and busway in a data hall under
+                    construction, with tiered basket tray carrying fibre and power"
+               width="1024" height="768" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <figcaption>
+        Overhead containment in a data hall under construction. The work
+        Archegon is preparing for is this, sited on top of a geothermal
+        resource rather than at the end of a transmission line.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="band tint" id="research">
+    <div class="band-head with-action">
+      <div>
+        <p class="eyebrow">Research and consulting</p>
+        <h2>Read the work before you back it</h2>
+      </div>
+      <div class="btn-row">
+        <a class="btn secondary" href="blog/">Read the research notes</a>
+        <a class="btn secondary" href="evidence/">View evidence base</a>
+      </div>
+    </div>
+    <div class="three-col">
+      <article class="card">
+        <p class="post-meta">Geothermal compute</p>
+        <h3>Power is the AI bottleneck</h3>
+        <p>
+          Why the interconnection queue, not chip supply, now sets the pace &mdash;
+          and why compute will move to the energy rather than the reverse.
+        </p>
+        <a class="read-link" href="blog/#power-constraint">Read note</a>
+      </article>
+      <article class="card">
+        <p class="post-meta">Agentic consulting</p>
+        <h3>Reliable AI agents for operational work</h3>
+        <p>
+          Archegon also keeps a research and advisory thread on agentic AI:
+          workflow design, evaluation, handoffs, and governance for practical
+          deployment.
+        </p>
+        <a class="read-link" href="blog/#automation-boundary">Read note</a>
+      </article>
+      <article class="card">
+        <p class="post-meta">Working stage</p>
+        <h3>Early, and saying so</h3>
+        <p>
+          No site, no wells, no revenue. What exists is a thesis, two candidate
+          routes, and a sourced evidence base. Judge it on that.
+        </p>
+        <a class="read-link" href="#contact">Get in touch</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="band" id="contact">
+    <div class="contact-panel">
+      <div>
+        <p class="eyebrow">Get involved</p>
+        <h2>If you have built this before, I want to hear from you</h2>
+        <p class="lede" style="margin-top:18px">
+          Sceptics welcome &mdash; particularly on the subsurface. If you think the
+          wells will not deliver, that is the most useful conversation I can have.
+          Tell me who you are and which part you would take on.
+        </p>
+      </div>
+      <a class="btn primary" href="mailto:hello@archegon.com?subject=Archegon%20partnering"
+         data-analytics-event="CTA: Direct email">
+        Email me directly
+      </a>
+    </div>
+
+    <form class="lead-form" id="lead-form">
+      <div class="form-segments" aria-label="I am here to">
+        <label><input type="radio" name="intent" value="Register investor interest" checked> Investor</label>
+        <label><input type="radio" name="intent" value="Partnership enquiry"> Partner</label>
+        <label><input type="radio" name="intent" value="Technical co-founder or collaborator"> Build</label>
+        <label><input type="radio" name="intent" value="Agentic AI consulting enquiry"> Consulting</label>
+        <label><input type="radio" name="intent" value="Advisor or operator"> Advise</label>
+        <label><input type="radio" name="intent" value="Press or policy enquiry"> Press</label>
+      </div>
+      <div class="form-grid">
+        <label>
+          Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>
+          Organisation <span>(optional)</span>
+          <input type="text" name="organisation" autocomplete="organization">
+        </label>
+        <label>
+          I am a
+          <select name="audience" required>
+            <option value="Investor">Investor</option>
+            <option value="Strategic partner">Strategic partner</option>
+            <option value="Technical collaborator">Technical collaborator</option>
+            <option value="Agentic AI consulting prospect">Agentic AI consulting prospect</option>
+            <option value="Advisor">Advisor</option>
+            <option value="Press">Press</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+      </div>
+      <label>
+        Message
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" name="consent" required>
+        <span>I consent to Archegon using this information to respond to my enquiry.</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" name="newsletter">
+        <span>I would also like to follow Archegon's progress by email.</span>
+      </label>
+      <p class="privacy-note">
+        Privacy note: this static site collects only the fields above. Submitting opens your
+        email client so you can review the message before sending. Archegon will use your
+        details only to respond to your enquiry or send updates if you opt in.
+      </p>
+      <p class="disclaimer inline">
         Nothing on this website constitutes an offer or invitation to invest, financial advice,
         or a financial promotion. All figures are illustrative and subject to verification.
-        Any investment discussion will occur separately with appropriately qualified parties.
       </p>
-    </footer>
+      <button class="button primary" type="submit" data-analytics-event="Form: Submit lead">
+        Register interest
+      </button>
+      <p class="form-status" data-form-status aria-live="polite"></p>
+    </form>
+  </section>
 
-    <script src="script.js"></script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Archegon",
-        "url": "https://www.archegon.com/",
-        "description": "Geothermal-powered data centres pairing firm clean power with AI compute.",
-        "email": "hello@archegon.com"
-      }
-    </script>
-  </body>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <p class="footer-mark">Archegon</p>
+      <p>Bringing compute to the heat.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="evidence/">Evidence</a>
+      <a href="blog/">Research notes</a>
+      <a href="mailto:hello@archegon.com">hello@archegon.com</a>
+    </nav>
+  </div>
+  <p class="footer-disclaimer">
+    Nothing on this website constitutes an offer or invitation to invest,
+    financial advice, or a financial promotion. All figures are illustrative and
+    subject to verification. Any investment discussion will occur separately with
+    appropriately qualified parties.
+  </p>
+</footer>
+
+<script>
+  /* inline the figure so its CSS classes are styleable from the page */
+  (function () {
+    var host = document.getElementById('scene');
+    fetch(host.dataset.figure)
+      .then(function (r) { return r.text(); })
+      .then(function (svg) { host.innerHTML = svg; })
+      .catch(function (e) { console.error('figure failed', e); });
+  })();
+
+  var hdr = document.querySelector('[data-header]');
+  function sync(){ hdr.dataset.scrolled = window.scrollY > 16 ? 'true' : 'false'; }
+  sync();
+  window.addEventListener('scroll', sync, { passive:true });
+</script>
+<script src="script.js"></script>
+</body>
 </html>
