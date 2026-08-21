@@ -124,7 +124,7 @@ def head(title: str, desc: str, canonical: str, depth: int) -> str:
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="{canonical}">
 <link rel="icon" href="{up}assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="{up}styles.css">
+<link rel="stylesheet" href="{up}styles.css?v=5">
 <script defer data-domain="archegon.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>"""
