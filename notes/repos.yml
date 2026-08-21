@@ -1,0 +1,14 @@
+# Code repositories shown on the notes page.
+# Add an entry, then run: python3 tools/build-notes.py
+#
+# - name:        display name
+#   url:         full URL
+#   description: one line
+#   language:    optional label
+
+- name: archegon-site
+  url: https://github.com/ArchegonDev/archegon-site
+  description: >-
+    This website. Static, no build step, with small Python tools for asset
+    optimisation, link checking, and generating these notes.
+  language: HTML / Python
