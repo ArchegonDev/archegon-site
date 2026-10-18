@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Funding tiers: what A$50m to A$500m buys · Archegon</title>
+<meta name="description" content="Interactive: electricity, compute capacity and revenue at each funding tier from A$50m to A$500m, built in whole 1.25 MW modules. Illustrative, not an offer.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../styles.css?v=5">
+<link rel="stylesheet" href="../../assets/css/investors.css">
+<style>
+.ft .controls{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:16px;margin:18px 0 10px;align-items:end}
+.ft .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#5f6670;margin-bottom:4px}
+.ft .seg{display:flex;flex-wrap:wrap;gap:4px}
+.ft .seg button{font:inherit;font-size:14px;border:1px solid #CBD5E1;background:#fff;color:#14171A;padding:5px 9px;border-radius:6px;cursor:pointer}
+.ft .seg button[aria-pressed="true"]{background:#0D6B5F;border-color:#0D6B5F;color:#fff;font-weight:700}
+.ft input[type=range]{width:100%;accent-color:#0D6B5F}
+.ft .readout b{font-size:34px;color:#0D6B5F}.ft .readout span{color:#5f6670;margin-left:8px}
+.ft .status{padding:10px 14px;border-radius:8px;font-weight:700;margin:10px 0 14px}
+.ft .st-ok{background:#ECFDF5;color:#065F46;border:1px solid #A7F3D0}.ft .st-ref{background:#EFF6FF;color:#1E3A8A;border:1px solid #BFDBFE}
+.ft .st-bad{background:#FEF2F2;color:#B91C1C;border:1px solid #FECACA}.ft .st-warn{background:#FFFBEB;color:#92400E;border:1px solid #FDE68A}
+.ft .status small{display:block;font-weight:400;margin-top:3px}
+.ft .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ft .card h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;margin:0 0 6px}
+.ft .c-el h2{color:#B45309}.ft .c-cp h2{color:#6D28D9}.ft .c-ec h2{color:#0D6B5F}
+.ft .big{font-size:30px;font-weight:700;line-height:1.1}.ft .big small{font-size:14px;font-weight:400;color:#5f6670}
+.ft dl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;margin:8px 0 0;font-size:14px}.ft dt{color:#5f6670}.ft dd{margin:0;text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.ft .note{font-size:12.5px;color:#5f6670;margin-top:6px}.ft .neg{color:#B91C1C}
+.ft .bar{display:flex;height:30px;border-radius:6px;overflow:hidden;border:1px solid #CBD5E1;margin-top:6px}
+.ft .bar div{height:100%;transition:flex-grow .35s ease}
+.ft .legend{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;font-size:13px;margin-top:6px}.ft .sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:5px}
+.ft .legend .v{float:right;font-weight:700}
+.ft svg text{font-family:inherit}.ft .col{cursor:pointer}
+.ft .marks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0}
+.ft .marks div{border:1px solid #E5E7EB;border-radius:8px;padding:8px 10px;font-size:13px}.ft .marks b{display:block;font-size:18px}
+@media (max-width:860px){.ft .controls,.ft .cards,.ft .marks{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: reduce){.ft .bar div{transition:none}}
+</style>
+</head>
+<body>
+<main class="inv ft" id="top">
+<p class="crumb"><a href="../../">Archegon</a> · <a href="../">Investor materials</a></p>
+<h1>What each funding tier buys</h1>
+<p><span class="badge">ILLUSTRATIVE · NOT AN OFFER</span> &nbsp;Australian route · enhanced geothermal power with co-located modular AI compute · from model v3</p>
+<div class="marks" aria-label="Reference points">
+ <div>Reservoir test (first tranche)<b id="mk-test"></b>one doublet + circulation test, no hall</div>
+ <div>Operating break-even hall<b id="mk-be"></b>contribution = 0 (not a viable PoC)</div>
+ <div>Smallest whole-module build<b id="mk-1m"></b>one 1.25 MW module</div>
+ <div>5 MW reference<b id="mk-ref"></b>3.3% contribution on capital</div>
+</div>
+<div class="controls">
+ <div><div class="lbl" id="l-f">Funding (A$)</div><div class="readout"><b id="o-f"></b><span id="o-fu"></span></div>
+  <input type="range" id="rng" min="50" max="500" step="50" value="300" aria-labelledby="l-f"></div>
+ <div><div class="lbl" id="l-p">Net MWe per producer</div><div class="seg" id="seg-p" role="group" aria-labelledby="l-p"></div></div>
+ <div><div class="lbl" id="l-c">Cost per well (A$m)</div><div class="seg" id="seg-c" role="group" aria-labelledby="l-c"></div></div>
+ <div><div class="lbl" id="l-m">Revenue model</div><div class="seg" id="seg-m" role="group" aria-labelledby="l-m"></div></div>
+ <div id="cp-ctl" hidden><div class="lbl" id="l-gp">GPU-hour price, US$ <span class="badge" style="border-color:#7C3AED;color:#7C3AED;font-size:10px">PUBLIC PROXY</span></div><div class="seg" id="seg-gp" role="group" aria-labelledby="l-gp"></div>
+ <div class="lbl" id="l-gu" style="margin-top:6px">Utilisation</div><div class="seg" id="seg-gu" role="group" aria-labelledby="l-gu"></div>
+ <div class="lbl" id="l-gd" style="margin-top:6px">Price path within each 5-year GPU life</div><div class="seg" id="seg-gd" role="group" aria-labelledby="l-gd"></div>
+<div class="lbl" id="l-gc" style="margin-top:6px">Connectivity (Australia) <span class="badge" style="border-color:#7C3AED;color:#7C3AED;font-size:10px">PUBLIC PROXY</span></div><div class="seg" id="seg-gc" role="group" aria-labelledby="l-gc"></div><div class="lbl" id="l-gw" style="margin-top:6px">Workload</div><div class="seg" id="seg-gw" role="group" aria-labelledby="l-gw"></div><p class="note" id="gc-note"></p></div>
+</div>
+<div class="status" id="status" role="status" aria-live="polite"></div>
+<div id="main"></div>
+<div class="grid" style="grid-template-columns:1.3fr 1fr">
+ <div><div class="lbl">Use of funds, selected tier</div><div class="bar" id="bar" aria-hidden="true"></div><div class="legend" id="legend"></div></div>
+ <div><div class="lbl">All ten tiers · label = critical IT MW (whole modules) · click a column</div>
+  <svg id="tiers" viewBox="0 0 560 250" role="img" aria-label="Committed capital and IT delivered for each tier from A$50m to A$500m" style="width:100%;height:auto"></svg></div>
+</div>
+<details><summary>How this is calculated, and what it leaves out</summary>
+<p>Runway (24 months × A$250k) is funded first, then 25% contingency on every capex line. For each whole number of producers (one injector each), the remaining budget buys ORC plant and data-centre modules in <b>whole 1.25 MW steps</b>, capped at what the producers can supply (producers × net MWe × 0.90 ÷ PUE 1.25). The tier picks the producer count with the <b>best contribution per dollar committed</b> and leaves the rest <b>undrawn</b> rather than buying a second doublet for a sliver of capacity. Electricity shown at the fence is the <b>average</b> (× 0.90 capacity factor); firm power with one producer out is shown separately. Contribution = revenue − plant O&amp;M − team; it is not a return.</p>
+<p><b>Unpriced (A$0, so every figure is a floor):</b> land, brine gathering, fibre, native title, heritage and tenement legals, well replacement, data-centre opex, battery, standby generation, black start, stimulation and test facilities. Revenue assumes a full hall from day one at a US primary-market colocation rate; an islanded remote site may price lower. The 5 MWe net per producer is an assumption; the Cooper Basin's best sustained loop (Habanero, 19 kg/s) supports roughly 1–1.5 MWe net.</p>
+</details>
+<noscript><p><b>JavaScript is off.</b> Base case (5 MWe net/producer, A$16.5m/well, colocation):</p><table><tr><th>A$m</th><th>Wells</th><th>Avg MW at fence</th><th>Firm MW (N-1)</th><th>IT MW</th><th>Modules</th><th>Revenue A$m/yr</th><th>Contribution A$m/yr</th><th>Contribution ÷ capital</th></tr><tr><td>50</td><td>0</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0%</td></tr><tr><td>100</td><td>0</td><td>0.00</td><td>0.00</td><td>0.00</td><td>0</td><td>0.0</td><td>0.0</td><td>0.0%</td></tr><tr><td>150</td><td>2</td><td>1.56</td><td>0.00</td><td>1.25</td><td>1</td><td>3.6</td><td>0.3</td><td>0.3%</td></tr><tr><td>200</td><td>2</td><td>3.13</td><td>0.00</td><td>2.50</td><td>2</td><td>7.3</td><td>3.5</td><td>2.2%</td></tr><tr><td>250</td><td>2</td><td>3.13</td><td>0.00</td><td>2.50</td><td>2</td><td>7.3</td><td>3.5</td><td>2.2%</td></tr><tr><td>300</td><td>4</td><td>4.69</td><td>5.00</td><td>3.75</td><td>3</td><td>10.9</td><td>6.8</td><td>2.7%</td></tr><tr><td>350</td><td>4</td><td>6.25</td><td>5.00</td><td>5.00</td><td>4</td><td>14.5</td><td>10.1</td><td>3.3%</td></tr><tr><td>400</td><td>4</td><td>7.81</td><td>5.00</td><td>6.25</td><td>5</td><td>18.2</td><td>13.3</td><td>3.7%</td></tr><tr><td>450</td><td>4</td><td>7.81</td><td>5.00</td><td>6.25</td><td>5</td><td>18.2</td><td>13.3</td><td>3.7%</td></tr><tr><td>500</td><td>4</td><td>7.81</td><td>5.00</td><td>6.25</td><td>5</td><td>18.2</td><td>13.3</td><td>3.7%</td></tr></table></noscript>
+<!--PROXIES--><section class="card" style="margin-top:20px"><h2 style="margin-top:0">Public proxies for items we cannot price yet <span class="badge" style="border-color:#7C3AED;color:#7C3AED">PUBLIC PROXY</span></h2>
+<p>These figures are published benchmarks from other projects or markets. They are not Archegon quotes and are <b>not</b> included in the figures above. They show which way the open items move the numbers.</p>
+<table><tr><th>Item</th><th class="n">Proxy</th><th>Source</th></tr>
+<tr><td>Grid-forming battery, 2 h at 6.25 MW</td><td class="n">A$6.3m</td><td><a href="https://www.csiro.au/-/media/Energy/GenCost-2025-26-Final/GenCost_2025-26_Final_Report_20260715.pdf" rel="noopener">CSIRO GenCost 2025–26</a>, A$503/kWh</td></tr>
+<tr><td>Standby reciprocating engines, full load</td><td class="n">A$12.6m</td><td><a href="https://www.csiro.au/-/media/Energy/GenCost-2025-26-Final/GenCost_2025-26_Final_Report_20260715.pdf" rel="noopener">CSIRO GenCost 2025–26</a>, A$2,022/kW</td></tr>
+<tr><td>Black start</td><td class="n">within the above</td><td>No separate public figure</td></tr>
+<tr><td>Firm-power package incl. 25% contingency</td><td class="n"><b>A$23.7m</b></td><td>Sum of the above</td></tr>
+<tr><td>Extra runway, 24 → 36 months</td><td class="n">A$3.0m</td><td><a href="https://www.thinkgeoenergy.com/scientific-approach-to-well-design-powers-fervo-energys-cape-station/" rel="noopener">Fervo Cape Station schedule</a></td></tr>
+<tr><td>5 MW reference with proxies</td><td class="n"><b>A$375.1m</b></td><td>Contribution 2.7% of capital</td></tr>
+<tr><td>Texas hosting-contract structure (US$150/kW/mo + US$0.13/kWh energy)</td><td class="n">4.8%</td><td><a href="https://www.otcmarkets.com/stock/AZIO/news/AZIO-AI-Signs-First-Hosting-Agreement-at-Atlas-One-with-Power-Champion-10-MW-Contracted-with-Expansion-Rights-to-50-MW-R?e=&id=3551446" rel="noopener">AZIO AI, 9 Oct 2026</a>: upper case, grid-connected site</td></tr>
+<tr><td>Sydney colocation asking rent (power billed separately)</td><td class="n">US$188/kW/mo</td><td><a href="https://www.cbre.com/insights/reports/global-data-center-trends-2026" rel="noopener">CBRE, Jun 2026</a></td></tr>
+<tr><td>EGS well cost, Fervo Cape Station</td><td class="n">US$9.4m → 4.8m</td><td><a href="https://fervoenergy.com/fervo-energy-drilling-results-show-rapid-advancement-of-geothermal-performance/" rel="noopener">Fervo, Feb 2024</a></td></tr>
+<tr><td>Sustained EGS flow, Utah FORGE</td><td class="n">23.5 kg/s at 193 °C</td><td><a href="https://geoconvention.com/wp-content/uploads/abstracts/2025/114754-egs-well-test-analysis-from-the-perspect" rel="noopener">FORGE 2024 test analysis</a></td></tr>
+</table><p class="note">More in the <a href="../faq/">FAQ</a> and the Proxies tab of the downloadable model.</p></section><!--/PROXIES-->
+<p class="disc">Illustrative only, from Archegon's concept model v3 (12 Oct 2026); constants are generated from the spreadsheet. Not an offer of securities, a solicitation or financial advice.</p>
+</main>
+<script src="../../assets/js/archegon-data.js"></script>
+<script src="../../assets/js/archegon-engine.js"></script>
+<script src="../../assets/js/archegon-compute.js"></script>
+<script>
+(function(){
+var E=ArchegonEngine,M=E.M,S={F:300,prod:'BASE',cost:'BASE',mode:'COLO',gp:'p_base',gu:'u_base',gd:'decay',gc:X.C.connDefault,gw:X.C.workDefault},X=ArchegonCompute,CI=X.C.inp,$=function(i){return document.getElementById(i)};
+function m(x,d){d=d==null?1:d;var v=(Math.abs(x)/1e6).toFixed(d);return (x<0&&+v>0?'−':'')+'A$'+v+'m'}
+function f(x,d){return x.toFixed(d==null?1:d)}
+function seg(id,items,key){var el=$(id);el.innerHTML='';items.forEach(function(it){var b=document.createElement('button');b.type='button';b.textContent=it[1];b.title=it[2]||'';b.setAttribute('aria-pressed',String(S[key]==it[0]));b.onclick=function(){S[key]=it[0];render()};el.appendChild(b)})}
+var COL={wells:'#B45309',plant:'#0D6B5F',dc:'#6D28D9',it:'#1D4ED8',cont:'#9CA3AF',runway:'#4B5563',undrawn:'#F3F4F6'};
+var NAM={wells:'Wells + rig mobilisation',plant:'ORC power plant',dc:'Data-centre modules',it:'IT fit-out (own GPUs)',cont:'Contingency 25%',runway:'Runway 24 months',undrawn:'Undrawn (not committed)'};
+function parts(t){var u=t.u;if(!t.prod){var test=t.status==='test',ap=t.status==='appraisal';var w=test?2*u.well+M.rigMob:(ap?u.well+M.rigMob:0);
+  return {wells:w,plant:0,dc:0,it:0,cont:w*u.cont,runway:(test||ap)?u.runway:Math.min(t.F,u.runway),undrawn:Math.max(0,t.F-w*(1+u.cont)-((test||ap)?u.runway:Math.min(t.F,u.runway)))}}
+  return {wells:t.uof.wells,plant:t.uof.plant,dc:t.uof.dc,it:t.uof.it,cont:t.uof.cont,runway:t.uof.runway,undrawn:Math.max(0,t.undrawn)}}
+function render(){
+ var o={prod:S.prod,cost:S.cost,mode:S.mode==='COMPUTE'?'COLO':S.mode},F=S.F*1e6,t=E.tier(F,o),u=t.u,ref=E.reference(o);
+ seg('seg-p',[['LOW','2'],['BASE','5'],['HIGH','13','Source quotes gross: upper bound']],'prod');
+ seg('seg-c',[['LOW','14.0'],['BASE','16.5'],['HIGH','22.7','Single well, first of a kind'],['ACTUAL','50.85','Habanero 4 as drilled']],'cost');
+ seg('seg-m',[['COLO','Colocation'],['ANCHOR','Anchor lease','Hyperscale comparables: reference only'],['COMPUTE','Sell compute','GPU-as-a-service at public-proxy GPU-hour prices']],'mode');
+ $('cp-ctl').hidden=S.mode!=='COMPUTE';
+ seg('seg-gp',[['p_low',CI.p_low.toFixed(2),'SemiAnalysis B200 composite'],['p_base',CI.p_base.toFixed(2),'1-yr reserved, derived'],['p_high',CI.p_high.toFixed(2),'Lambda on-demand'],['p_cw',CI.p_cw.toFixed(2),'CoreWeave on-demand']],'gp');
+ seg('seg-gu',[['u_low',Math.round(CI.u_low*100)+'%'],['u_base',Math.round(CI.u_base*100)+'%'],['u_high',Math.round(CI.u_high*100)+'%']],'gu');
+ seg('seg-gw',[['train','Training-style','~10 Gbps'],['inf','Inference serving','~10 Gbps per 100 GPUs']],'gw');
+ seg('seg-gc',[['today','Satellite today','One terminal, ~50 Mbps busy hour'],['bt','Bonded satellite','Many terminals bonded; priority data is the cost'],['cg','Future satellite','Gateway, 10 Gbps max, 2024 price'],['fb','Fibre','~79 km to Moomba']],'gc');
+ var cc=X.C.conn[S.gw==='inf'&&S.gc!=='fy'?X.C.infPair[S.gc]:S.gc];$('gc-note').innerHTML=cc.label.replace(/^\S+\s/,'')+': capex '+m(cc.capex)+', '+m(cc.opex)+'/yr. '+(cc.ok?'Carries the '+(S.gw==='inf'?'inference':'training-style')+' load ('+Math.round(cc.need)+' Gbps).':'<b>Cannot carry the '+(S.gw==='inf'?'inference':'training-style')+' load ('+Math.round(cc.need)+' Gbps); revenue is capped.</b>')+' '+cc.note+' <a href="/investors/faq/#connectivity">How we sized this</a>';
+ seg('seg-gd',[['decay','Falls '+Math.round(-CI.decay*100)+'%/yr','H100 history 2024-26'],['decay_flat','Flat','2026 market']],'gd');
+ $('rng').value=S.F;$('o-f').textContent='A$'+S.F+'m';$('o-fu').textContent='≈ US$'+f(F*M.fx/1e6)+'m at FX '+M.fx;
+ $('mk-test').textContent=m(u.reservoirTest);$('mk-be').textContent=u.breakEven?m(u.breakEven):'n/a';$('mk-1m').textContent=m(u.firstModule);$('mk-ref').textContent=m(ref.raise);
+ $('mk-ref').nextSibling.textContent=' '+(ref.ratio*100).toFixed(1)+'% contribution on capital';
+ var st=$('status');
+ if(t.status==='none'){st.className='status st-bad';st.innerHTML='Too small for a well with contingency and runway.<small>An appraisal well needs '+m(u.appraisalWell)+'; a reservoir-test doublet needs '+m(u.reservoirTest)+'.</small>'}
+ else if(t.status==='appraisal'){st.className='status st-warn';st.innerHTML='Buys one deep appraisal well (temperature, stress, injectivity), not power.<small>A doublet circulation test needs '+m(u.reservoirTest)+'.</small>'}
+ else if(t.status==='test'){st.className='status st-warn';st.innerHTML='Reservoir test only: one doublet and a 90–180 day circulation test. No plant, no hall, no revenue.<small>This is the gate that retires the main risk. One powered 1.25 MW module needs '+m(u.firstModule)+'.</small>'}
+ else if(t.status==='neg'){st.className='status st-bad';st.innerHTML='Builds whole modules, but contribution is negative ('+m(t.contrib,2)+'/yr).'}
+ else if(t.status==='small'){st.className='status st-ok';st.innerHTML='Contribution is positive, but it is '+(t.ratio*100).toFixed(1)+'% of the capital committed: an operating result, not a return.<small>Smaller than the 5 MW reference ('+m(ref.raise)+').</small>'}
+ else {st.className='status st-ref';st.innerHTML='At or above the 5 MW reference. Contribution '+(t.ratio*100).toFixed(1)+'% of capital committed: below any cost of capital.<small>'+(t.undrawn>1e6?m(t.undrawn)+' is left undrawn: a third doublet would add little capacity per dollar.':'')+'</small>'}
+ if(S.mode==='COMPUTE'&&t.prod){var c0=X.sell(t.it,t.committed,t.opex,{price:CI[S.gp],util:CI[S.gu],decay:CI[S.gd],conn:S.gc,work:S.gw});
+  st.className='status '+(c0.irr!=null&&c0.irr>=0.08?'st-ok':'st-warn');
+  st.innerHTML='Selling compute: year-1 EBITDA '+m(c0.ebitda)+' on '+m(c0.total)+' of capital including GPUs; 25-year IRR '+(c0.irr==null?'none: it never repays':(c0.irr*100).toFixed(1)+'%')+'.<small>Public-proxy GPU prices. The result turns on whether GPU-hour prices fall: compare the two price paths.</small>'}
+ var main=$('main');
+ if(!t.prod){main.innerHTML='<div class="card"><p>No electricity, compute or revenue at this tier. '+(t.status==='test'?'It funds the reservoir test that decides whether anything after it is worth building.':'')+'</p></div>'}
+ else{
+  var rev=S.mode==='BAREMETAL'?'<span class="neg">unpriced · A$0</span>':m(t.rev);
+  var cpu=null;if(S.mode==='COMPUTE'){cpu=X.sell(t.it,t.committed,t.opex,{price:CI[S.gp],util:CI[S.gu],decay:CI[S.gd],conn:S.gc,work:S.gw});}
+  main.innerHTML='<div class="cards">'+
+  '<div class="card c-el"><h2>Electricity</h2><div class="big">'+f(t.avgFence,2)+' <small>MW average at the fence</small></div><dl>'+
+   '<dt>Firm with one producer out</dt><dd>'+f(t.firm,2)+' MW</dd><dt>Net plant nameplate</dt><dd>'+f(t.netNameplate,2)+' MW</dd>'+
+   '<dt>Wells</dt><dd>'+t.wells+' ('+t.prod+' producer'+(t.prod>1?'s':'')+')</dd><dt>Well capacity (net)</dt><dd>'+f(t.wellCap,1)+' MW</dd>'+
+   '<dt>Energy per year</dt><dd>'+Math.round(t.mwh).toLocaleString()+' MWh</dd></dl><p class="note">Average = net nameplate × 0.90. Firm cover (battery, standby generation) is costed only at a public proxy, about A$23.7m, not included here.</p></div>'+
+  '<div class="card c-cp"><h2>Compute</h2><div class="big">'+f(t.it,2)+' <small>MW critical IT</small></div><dl>'+
+   '<dt>Whole 1.25 MW modules</dt><dd>'+t.modules+'</dd><dt>Firm IT (one producer out)</dt><dd>'+f(t.firmIt,2)+' MW</dd>'+
+   (cpu?'<dt>8-GPU B200 servers (14.3 kW)</dt><dd>'+cpu.servers+'</dd><dt>GPUs</dt><dd>'+cpu.gpus.toLocaleString()+'</dd><dt>GPUs paid by</dt><dd>Archegon ('+m(cpu.gpuCapex)+')</dd></dl></div>':'<dt>GB200-class racks (130 kW)</dt><dd>'+t.racks+'</dd><dt>GPUs paid by</dt><dd>tenant</dd></dl></div>')+
+  (cpu?'<div class="card c-ec"><h2>Sell compute: year-1 economics</h2><div class="big'+(cpu.ebitda<0?' neg':'')+'">'+m(cpu.ebitda,1)+' <small>EBITDA yr 1</small></div><dl>'+
+   '<dt>GPU-hour revenue</dt><dd>'+m(cpu.rev)+'</dd><dt>Power, team, maintenance, GPU ops</dt><dd>'+m(cpu.rev-cpu.ebitda)+'</dd><dt>Total capital incl. GPUs</dt><dd>'+m(cpu.total)+'</dd>'+
+   '<dt>EBITDA ÷ capital, yr 1</dt><dd>'+(cpu.yield*100).toFixed(1)+'%</dd><dt>25-yr IRR</dt><dd'+(cpu.irr==null||cpu.irr<0.08?' class="neg"':'')+'>'+(cpu.irr==null?'never repays':(cpu.irr*100).toFixed(1)+'%')+'</dd></dl>'+
+   '<p class="note">PUBLIC PROXY prices and costs (see the model\'s Sell-Compute tab). GPUs replaced every 5 years. Pre-tax, unlevered, no resale value. Needs fibre to the site (unpriced).</p></div></div>': '<div class="card c-ec"><h2>Estimated annual economics</h2><div class="big'+(t.contrib<0?' neg':'')+'">'+m(t.contrib,2)+' <small>contribution / yr</small></div><dl>'+
+   '<dt>Revenue</dt><dd>'+rev+'</dd><dt>Plant O&amp;M + team</dt><dd>'+m(t.opex,2)+'</dd><dt>Capital committed</dt><dd>'+m(t.committed)+'</dd>'+
+   '<dt>Contribution ÷ capital</dt><dd>'+(t.ratio*100).toFixed(1)+'%</dd><dt>Undrawn</dt><dd>'+m(Math.max(0,t.undrawn))+'</dd></dl>'+
+   '<p class="note">Once built and full. Not EBITDA, not a return. '+(S.mode==='ANCHOR'?'Anchor comparables are ~400 MW hyperscale leases; reference only.':'')+'</p></div></div>');
+ }
+ var p=parts(t),keys=['wells','plant','dc','it','cont','runway','undrawn'],bar=$('bar'),lg=$('legend');bar.innerHTML='';lg.innerHTML='';
+ keys.forEach(function(k){var d=document.createElement('div');d.style.flexGrow=String(Math.max(0,p[k]));d.style.flexBasis='0';d.style.background=k==='undrawn'?'repeating-linear-gradient(45deg,#fff,#fff 6px,#E5E7EB 6px,#E5E7EB 12px)':COL[k];bar.appendChild(d);
+  if(p[k]<1&&k!=='it')return; if(k==='it'&&S.mode!=='BAREMETAL')return;
+  lg.insertAdjacentHTML('beforeend','<div><span class="sw" style="background:'+(k==='undrawn'?'#E5E7EB':COL[k])+'"></span>'+NAM[k]+'<span class="v">'+m(p[k])+'</span></div>')});
+ var svg=$('tiers'),W=560,H=250,L=40,R=8,T=20,B=36,cw=(W-L-R)/10,h='';function y(v){return T+(H-T-B)*(1-v/500e6)}
+ for(var g=0;g<=500;g+=100)h+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(g*1e6)+'" y2="'+y(g*1e6)+'" stroke="#E5E7EB"/><text x="'+(L-5)+'" y="'+(y(g*1e6)+4)+'" font-size="10" text-anchor="end" fill="#5f6670">'+g+'</text>';
+ for(var i=0;i<10;i++){var Fi=(i+1)*50,ti=E.tier(Fi*1e6,o),pi=parts(ti),x=L+i*cw+cw*.14,bw=cw*.72,acc=0,sel=Fi===S.F;
+  h+='<g class="col" data-f="'+Fi+'" tabindex="0" role="button" aria-label="A$'+Fi+'m: '+f(ti.it,2)+' MW IT"><rect x="'+(L+i*cw)+'" y="'+T+'" width="'+cw+'" height="'+(H-T-B)+'" fill="'+(sel?'#F0FDFA':'transparent')+'"/>';
+  keys.forEach(function(k){var v=pi[k];if(v<=0)return;var y0=y(acc),y1=y(acc+v);acc+=v;h+='<rect x="'+x+'" y="'+y1+'" width="'+bw+'" height="'+Math.max(0,y0-y1)+'" fill="'+(k==='undrawn'?'#F3F4F6':COL[k])+'"'+(k==='undrawn'?' stroke="#9CA3AF" stroke-dasharray="3 2"':'')+'/>'});
+  h+='<text x="'+(x+bw/2)+'" y="'+(y(Fi*1e6)-5)+'" font-size="10" text-anchor="middle" font-weight="700" fill="#14171A">'+(ti.it>0?f(ti.it,2):(ti.status==='test'?'test':'—'))+'</text>';
+  h+='<text x="'+(x+bw/2)+'" y="'+(H-B+14)+'" font-size="10.5" text-anchor="middle" font-weight="'+(sel?700:400)+'">'+Fi+'</text><text x="'+(x+bw/2)+'" y="'+(H-B+26)+'" font-size="9" text-anchor="middle" fill="#5f6670">'+ti.wells+'w</text></g>'}
+ svg.innerHTML=h;[].forEach.call(svg.querySelectorAll('.col'),function(c){var go=function(){S.F=+c.getAttribute('data-f');render()};c.addEventListener('click',go);c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})});
+}
+$('rng').addEventListener('input',function(e){S.F=+e.target.value;render()});
+try{var q=new URLSearchParams(location.search),a=+q.get('aud');if(a>=50&&a<=500&&a%50===0)S.F=a}catch(e){}
+render();
+})();
+</script>
+</body>
+</html>
