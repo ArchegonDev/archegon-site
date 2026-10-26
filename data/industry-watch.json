@@ -1,0 +1,141 @@
+[
+  {
+    "id": "2026-10-09-azio-atlas-one-hosting",
+    "date": "2026-10-09",
+    "title": "AZIO AI signs 10 MW hosting deal at Atlas One, Texas",
+    "summary": "AZIO AI signed its first Atlas One hosting agreement with Power Champion: 10 MW contracted with rights to expand to 50 MW, a US$150/kW-month capacity reservation charge plus US$0.13/kWh energy, and a 60-month term from energisation. No capacity is energised yet and performance depends on US GPU export approvals.",
+    "why_it_matters": "A public price point for rent-the-hall AI hosting, useful as a labelled proxy for Archegon's colocation case.",
+    "tags": ["compute", "pricing", "colocation"],
+    "allegation": false,
+    "sources": [
+      { "label": "GlobeNewswire (AZIO AI release)", "url": "https://www.globenewswire.com/news-release/2026/10/09/3378070/0/en/azio-ai-signs-first-hosting-agreement-at-atlas-one-with-power-champion-10-mw-contracted-with-expansion-rights-to-50-mw-representing-up-to-approximately-450-million-in-capacity-rese.html" }
+    ]
+  },
+  {
+    "id": "2026-10-11-xgs-red-hills-lake-county",
+    "date": "2026-10-11",
+    "title": "XGS Energy and Red Hills float geothermal-powered data centre in Lake County, California",
+    "summary": "Red Hills and XGS Energy described a possible closed-loop geothermal plant and data centre in Lake County. The project is preliminary: county officials say no permit, zoning or environmental application has been filed.",
+    "why_it_matters": "Another geothermal-plus-compute co-location concept, at an early stage similar to Archegon's.",
+    "tags": ["geothermal", "compute", "co-location"],
+    "allegation": false,
+    "sources": [
+      { "label": "Lake County News", "url": "https://www.lakeconews.com/en/85503-red-hills-xgs-to-potentially-develop-data-center-and-geothermal-power-plant-in-lake-county" },
+      { "label": "KWINE (county officials: no applications filed)", "url": "https://www.kwine.com/2026/10/21/officials-in-lake-county-say-there-are-no-applications-to-bring-geothermal-powered-data-centers-to-the-area/" }
+    ]
+  },
+  {
+    "id": "2026-10-06-morpheus-fervo-short-report",
+    "date": "2026-10-06",
+    "title": "Allegation: short seller Morpheus Research targets Fervo Energy",
+    "summary": "ALLEGATION. Short seller Morpheus Research alleges undisclosed thermal decline at Fervo's Project Red pilot (it claims about 24°F per year from Nov 2025 to May 2026), high water loss, and seismic and data-disclosure issues at Cape Station. These are unproven claims by a party that profits if the share price falls. Fervo says its published data show no rapid early decline, and several geothermal specialists quoted by Heatmap dispute parts of the analysis.",
+    "why_it_matters": "Thermal decline and fluid loss are the main EGS risks. Archegon's go/no-go gates test them directly.",
+    "tags": ["geothermal", "egs", "risk", "allegation"],
+    "allegation": true,
+    "sources": [
+      { "label": "Morpheus Research (short-seller report)", "url": "https://www.morpheus-research.com/fervo/" },
+      { "label": "Heatmap News (industry responses)", "url": "https://heatmap.news/energy/fervo-short-seller-report" }
+    ]
+  },
+  {
+    "id": "2026-10-14-fervo-law-firm-probes",
+    "date": "2026-10-14",
+    "title": "Law firms open investor probes into Fervo; no lawsuit filed",
+    "summary": "Shareholder law firms including Bronstein, Gewirtz & Grossman issued repeated notices of investigations into possible securities claims, citing the Morpheus allegations. These are solicitations for clients. As of the notices, no complaint had been filed.",
+    "why_it_matters": "Shows how quickly disclosure questions turn into legal and financing risk for a listed EGS developer.",
+    "tags": ["geothermal", "risk", "allegation", "legal"],
+    "allegation": true,
+    "sources": [
+      { "label": "Bronstein, Gewirtz & Grossman case page", "url": "https://bgandg.com/cases/fervo-energy-company-frvo-class_action_lawsuit/" }
+    ]
+  },
+  {
+    "id": "2026-10-16-eavor-geretsried-rigs",
+    "date": "2026-10-16",
+    "title": "Eavor withdraws drilling rigs from Geretsried; Loop 2 on hold",
+    "summary": "Eavor is withdrawing both rigs from its Geretsried closed-loop project to cut standby costs while it negotiates a firm heat offtake. The company had disclosed 0.5–2.0 MWe gross with practically no power exported. Heat offtaker Isar Loisach Naturwärme says it is reassessing its plans.",
+    "why_it_matters": "A real-world execution and offtake risk for a next-generation geothermal technology. It supports budgeting for drilling contingency and firm offtake before rigs are mobilised.",
+    "tags": ["geothermal", "closed-loop", "risk"],
+    "allegation": false,
+    "sources": [
+      { "label": "ThinkGeoEnergy", "url": "https://www.thinkgeoenergy.com/eavor-withdraws-drilling-rigs-from-the-geretsried-geothermal-project-site-in-germany/" },
+      { "label": "Isar Loisach Naturwärme (German)", "url": "https://www.iln-naturwaerme.de/verzoegerung-beim-zweiten-loop/" }
+    ]
+  },
+  {
+    "id": "2026-10-16-tidal-wave-morpheus-rebuttal",
+    "date": "2026-10-16",
+    "title": "Independent consultancy disputes Morpheus temperature-drop claim",
+    "summary": "Tidal Wave Technologies, an independent subsurface consultancy, argues that the 90°F single-month drop at Project Red cited by Morpheus reflects shut-ins and throttling in monthly averages rather than reservoir cooling. This is a third-party view, not a Fervo statement.",
+    "why_it_matters": "Shows why Archegon's decline gate should use daily flow-weighted data rather than monthly averages.",
+    "tags": ["geothermal", "egs", "risk", "allegation"],
+    "allegation": true,
+    "sources": [
+      { "label": "Tidal Wave Technologies", "url": "https://tidalwavetechnologies.com/morpheus-researchs-recent-report-on-fervo-energy-a-mythbusters-like-approach-to-assessing-their-claims/" }
+    ]
+  },
+  {
+    "id": "2026-10-20-zte-m8000-it-pod",
+    "date": "2026-10-20",
+    "title": "ZTE launches M8000 AI IT POD micro-module",
+    "summary": "ZTE launched the M8000 prefabricated AI IT POD at Data Centre World Asia, with 20–60 kW racks (up to 250 kW peak), 800 V HVDC power and a claimed PUE as low as 1.15. No module MW size or cost per MW was published.",
+    "why_it_matters": "Adds to the range of modular options for a remote site, though without pricing.",
+    "tags": ["compute", "modular"],
+    "allegation": false,
+    "sources": [
+      { "label": "ZTE release", "url": "https://www.zte.com.cn/global/about/news/zte-launches-m8000-intelligent-computing-micro-module-data-center,new-gen-aidc-it-pod-solution-for-global-deployment.html" },
+      { "label": "DCD", "url": "https://www.datacenterdynamics.com/en/news/zte-unveils-data-center-module-designed-for-ai-workloads/" }
+    ]
+  },
+  {
+    "id": "2026-10-21-crusoe-spark-liquid",
+    "date": "2026-10-21",
+    "title": "Crusoe launches Spark Liquid: up to 3.5 MW per modular unit",
+    "summary": "Crusoe introduced Spark Liquid, a factory-built modular AI data centre with closed-loop, non-evaporative liquid cooling and up to 3.5 MW of compute per unit, deployable in clusters. Production starts at its Brighton, Colorado factory in 2027. No price was disclosed. DCD reports that all 2027 units are set to go to Crusoe's own cloud, so third parties can't buy them in 2027. Each unit is three container-sized modules, about 60 by 50 ft, and the company targets sites of 10 MW and up.",
+    "why_it_matters": "Closed-loop cooling matters for Archegon's water budget, and the 3.5 MW block size suits a small first geothermal stage. 2027 availability to outside buyers is the constraint.",
+    "tags": ["compute", "modular", "water"],
+    "allegation": false,
+    "sources": [
+      { "label": "Crusoe newsroom", "url": "https://www.crusoe.ai/resources/newsroom/crusoe-introduces-crusoe-spark-liquid" },
+      { "label": "DCD", "url": "https://www.datacenterdynamics.com/en/news/crusoe-plans-spark-liquid-modular-data-center-to-support-latest-nvidia-gpus/" }
+    ]
+  },
+  {
+    "id": "2026-10-21-nvidia-dsx-pod",
+    "date": "2026-10-21",
+    "title": "NVIDIA unveils DSX POD containerised AI factory reference design",
+    "summary": "NVIDIA introduced DSX POD at GTC Berlin. It is a partner-built container holding seven Vera Rubin NVL72 racks, weighing about 28 t, and connecting to a prepared site's power, cooling and network. NVIDIA says install time at a prepared site can fall from six months to as little as 14 days, with partner deliveries from early 2027. NVIDIA published no price or MW rating.",
+    "why_it_matters": "A truckable compute block that could suit a remote geothermal site, provided the site supplies power, cooling and connectivity.",
+    "tags": ["compute", "modular"],
+    "allegation": false,
+    "sources": [
+      { "label": "NVIDIA Newsroom", "url": "https://nvidianews.nvidia.com/news/nvidia-introduces-dsx-pod-ai-factories-to-accelerate-europes-infrastructure-deployment" },
+      { "label": "CNBC", "url": "https://www.cnbc.com/2026/10/21/nvidia-announces-vera-rubin-racks-that-can-be-shipped-on-a-truck-.html" }
+    ]
+  },
+  {
+    "id": "2026-10-22-dsx-pod-cost-estimates",
+    "date": "2026-10-22",
+    "title": "Outside estimate: DSX POD around US$50m per container",
+    "summary": "OUTSIDE ESTIMATE, not NVIDIA pricing. CNBC reports that analysts put a single Vera Rubin rack at more than US$7m. Futuriom estimates a seven-rack DSX POD at roughly US$49–50m or more per container. NVIDIA has not published a price.",
+    "why_it_matters": "Compute capex will dwarf the power plant cost per MW. The sell-compute case needs these figures labelled as estimates until there are vendor quotes.",
+    "tags": ["compute", "pricing", "estimate"],
+    "allegation": false,
+    "sources": [
+      { "label": "Futuriom (estimate)", "url": "https://www.futuriom.com/articles/news/nvidia-bets-costly-dsx-pod-against-ai-factory-timetable/2026/10" },
+      { "label": "CNBC (analyst rack estimate)", "url": "https://www.cnbc.com/2026/10/21/nvidia-announces-vera-rubin-racks-that-can-be-shipped-on-a-truck-.html" }
+    ]
+  },
+  {
+    "id": "2026-10-22-crusoe-araico-itaipu",
+    "date": "2026-10-22",
+    "title": "Crusoe and Araico plan hydro-powered AI cloud next to Itaipú, Paraguay",
+    "summary": "Crusoe and Araico plan AI compute adjacent to the Itaipú substation. The initial deployment is due in mid-2027, with a path to 106 MW of IT capacity and options to about 280 MW in total. The release does not disclose the investment amount or the power tariff.",
+    "why_it_matters": "Shows the 'compute at the energy source' model that Archegon follows, here using firm renewable power.",
+    "tags": ["compute", "firm-power", "co-location"],
+    "allegation": false,
+    "sources": [
+      { "label": "Crusoe newsroom", "url": "https://www.crusoe.ai/resources/newsroom/crusoe-araico-hydroelectric-ai-infrastructure-partnership" }
+    ]
+  }
+]

@@ -13,6 +13,18 @@ python3 -m http.server 8080
 
 Then visit `http://127.0.0.1:8080`.
 
+## Industry watch
+
+Public notes live in `data/industry-watch.json`. To add an entry:
+
+1. Append an object with `id`, `date` (`YYYY-MM-DD`), `title`, a short `summary`, `why_it_matters`, `tags`, and at least one `sources` item `{label, url}`.
+2. Set `allegation` to `true` when the item is an allegation rather than a confirmed fact.
+3. Rebuild the feed: `node scripts/build-industry-watch-feed.mjs`
+4. Check the page data and feed: `node scripts/validate-industry-watch.mjs`
+5. Commit the JSON and the generated `industry-watch/feed.xml` together.
+
+Every entry must have a title, a date, and at least one source URL. The pull-request check fails if any of those are missing or if the committed feed is stale.
+
 ## QA checks
 
 Run the internal site link check before publishing:
