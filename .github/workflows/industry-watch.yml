@@ -1,0 +1,18 @@
+name: Industry watch
+
+on:
+  pull_request:
+
+jobs:
+  validate:
+    name: Validate entries and feed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate industry watch data and RSS
+        run: node scripts/validate-industry-watch.mjs

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archegon Industry watch</title>
+    <link>https://www.archegon.com/industry-watch/</link>
+    <description>Sourced public notes on geothermal power, grids, and compute. Allegations are labelled on the page.</description>
+    <language>en-GB</language>
+    <lastBuildDate>Thu, 01 Jan 1970 12:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.archegon.com/industry-watch/feed.xml" rel="self" type="application/rss+xml"/>
+  </channel>
+</rss>
